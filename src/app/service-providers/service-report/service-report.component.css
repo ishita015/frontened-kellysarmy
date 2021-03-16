@@ -1,0 +1,54 @@
+.report .form-control{
+    height: 66px;
+}
+.report .btn-success{width: 100%; height: 40px; border-radius: 10px; margin-top: 43px; }
+.form-control {
+    font-weight: 300;
+    padding: 14px 16px;
+}
+
+
+.dummy_text ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+   
+    background: #fff !important;
+    height: 66px;
+   
+   }
+   .dummy_text ::ng-deep .mat-icon-button{
+   	    display: block;
+    font-size: inherit;
+    width: 2.5em;
+    height: 2.5em;
+    color: #7f7f7f;
+    position: relative;
+    top: 5px;
+   }
+/*   .dummy_text ::ng-deep  .mat-date-range-input {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    position: relative;
+    bottom: 7px;
+   }
+   */
+  
+
+mat-datepicker-toggle {
+ color: white !important;
+}
+
+.bottomexcel .btn-success, .bottomexcel .btn-primary{border-radius: 10px;}
+
+
+.bottomexcel .ngx-datatable .visible .datatable-header .datatable-header-inner> .datatable-row-center .datatable-header-cell:first-child{
+    min-width: 80px !important
+}
+.bottomexcel .ngx-datatable .visible .datatable-header .datatable-header-inner> .datatable-row-center .datatable-header-cell {
+    min-width: 150px !important;
+}
+.bottomexcel .datatable-body .datatable-scroll .datatable-row-wrapper .datatable-body-row .datatable-row-center .datatable-body-cell:first-child {
+    min-width: 80px !important;
+}
+.bottomexcel .datatable-body .datatable-scroll .datatable-row-wrapper .datatable-body-row .datatable-row-center .datatable-body-cell {
+    min-width: 150px !important;
+}

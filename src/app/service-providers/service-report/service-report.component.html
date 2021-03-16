@@ -1,0 +1,210 @@
+<div class="aouth-container lg-container service-provider-container">
+    <app-services-side-bar></app-services-side-bar>
+
+    <!-- <div class="btn-group">
+      <button type="button" class="btn btn-primary" (click)="useLanguage('pt')"> {{'home.button.pt' | translate}}  </button>
+      <button type="button" class="btn btn-primary" (click)="useLanguage('en')">  {{'home.button.en' | translate}}  </button>
+    </div> -->
+    <div class="container">
+      <div class="main-content">
+        <div class="bonus-packages">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+      <div class="col-sm-12 report">
+         <div class="row">
+            <div class="col-sm-3 dummy_text">
+               <label>{{'service-report.booking-date' | translate}}</label>      
+               <!-- <span *ngIf="dateRangeText != ''">{{dateRangeText}}</span> -->
+
+               <input  placeholder="Select Date" value="" (change)="FilterData()" id="border_date"  class="form-control" type="date">
+              <!--  <mat-form-field >
+  <mat-date-range-input [rangePicker]="picker">
+    <input matStartDate placeholder="Start Date" (dateChange)="FilterData()" id="border_date">
+    <input matEndDate placeholder="End date" (dateChange)="FilterData()" id="order_date_end">
+  </mat-date-range-input>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field> -->
+<!-- <mat-form-field >
+                    <mat-date-range-input [rangePicker]="picker">
+                      <input matStartDate matInput placeholder="Select Date" value="" id="border_date"  class="form-control">
+                      <input matEndDate matInput placeholder="End date" value="" (dateChange)="FilterData()" id="order_date_end" >
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                  </mat-form-field> -->
+            </div>
+           <!--  <div class="col-sm-3">
+               <label>Provider</label>
+               <select class="form-control" (change)="FilterData()"  id="provider_id">
+                  <option value="no" selected disabled="">Select Provider</option>
+                  <option *ngFor="let vender of VenderData;" value="{{vender.id}}">{{vender.name}}</option>
+               </select>
+            </div> -->
+            <div class="col-sm-3">
+               <label>{{'service-report.location' | translate}}</label>
+               <input #search  value=""  id="border_date"  class="form-control" type="text" autocomplete="off" placeholder="{{'service-report.search-location' | translate}}">
+            </div>
+            <div class="col-sm-4">
+               <label>{{'service-report.booking-status' | translate}}</label>
+               <div class="form-group form-field">
+                  <div class="form-field__control select-box" data-fa-icon="">
+                    <div class="select">
+                        <select (change)="FilterData()" value="" id="booking_status_id" class="form-field__input">
+                          <option value="no">{{'service-report.select-status' | translate}}</option>
+                          <option value="pending">{{'service-report.pending' | translate}}</option>
+                          <option value="progress">{{'service-report.progress' | translate}}</option>
+                          <option value="complete">{{'service-report.completed' | translate}}</option>
+                        </select>
+                    </div>
+                     <label for="city" class="form-field__label">{{'service-report.booking-status' | translate}}</label>
+                  </div>
+                </div>
+           <!--     <select (change)="FilterData()" id="booking_status_id" class="form-control">
+                  <option value="no" selected disabled="">Select Status</option>
+                  <option value="pending">Pending</option>
+                  <option>Declined</option>
+                  <option value="progress">Progress</option>
+                  <option value="complete">Completed</option>
+               </select> -->
+            </div>
+       
+      
+      <div class="col-sm-2  text-center">
+         <button  (click)="RefreshData()" type="button" style="border-radius: 10px;" class="mt-45 btn btn-outline-secondary"><i  aria-hidden="true">{{'service-report.refresh' | translate}}</i>
+         </button>
+      </div>
+      </div>
+        </div>
+   </div>
+
+  <div class="col-md-12 p-0">
+          <div class="card  o-hidden bottomexcel">
+             <div class="text-right" *ngIf="getDetails?.length > 0">
+                <!-- <button style="border-radius: 10px;" class="btn btn-outline-secondary mt-2 mr-2" (click)="convert()">pdf</button> -->
+                <button class="btn btn-primary mt-2 mr-1" (click)="exporttoExcle()">Excel</button>
+              </div>
+              <ngx-datatable class="material" id="customers" *ngIf="getDetails?.length"
+              style="height: 500px; box-shadow: none"
+              class="material fullscreen"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [rowHeight]="60"
+              [scrollbarV]="true"
+              [rows]="getDetails">
+              <ngx-datatable-column name="S.No" [sortable]="false" [maxWidth]="100" >
+                <ng-template ngx-datatable-header-template >
+                 S.No
+                </ng-template>
+                <ng-template ngx-datatable-cell-template let-value="value" let-rowIndex="rowIndex" let-row="row">
+                    {{rowIndex +1}}
+                </ng-template>
+               </ngx-datatable-column>
+                <ngx-datatable-column name="Post Code" prop="service_name" >
+                  <ng-template ngx-datatable-header-template>
+                    {{'service-report.service-name' | translate}}
+                  </ng-template>
+                  <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                    {{row.service_name}}
+                </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Location" prop="customer_name">
+                  <ng-template ngx-datatable-header-template>
+                    {{'service-report.customer-name' | translate}}
+                  </ng-template>
+                  <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                    {{row.customer_name}}
+                </ng-template>
+                </ngx-datatable-column> 
+                 <ngx-datatable-column name="Location" prop="location">
+                  <ng-template ngx-datatable-header-template>
+                    {{'service-report.location' | translate}}
+                  </ng-template>
+                  <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                    {{row.location}}
+                </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Location" prop="coast">
+                  <ng-template ngx-datatable-header-template>
+                  {{'service-report.amount' | translate}}
+                  </ng-template>
+                  <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                    {{row.coast}}
+                </ng-template>
+                </ngx-datatable-column> 
+
+                <!-- <ngx-datatable-column name="Location" prop="service_provider_name">
+                  <ng-template ngx-datatable-header-template>
+                   Vender Name
+                  </ng-template>
+                  <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                    {{row.service_provider_name}}
+                </ng-template>
+                </ngx-datatable-column> -->
+
+                 <ngx-datatable-column name="Location" prop="service_provider_amount">
+                  <ng-template ngx-datatable-header-template>
+                    {{'service-report.vender-amount' | translate}}
+                  </ng-template>
+                  <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                    <!-- {{ row.service_provider_name == ''?  '' :   row.service_provider_amount}} -->
+                    {{row.service_provider_amount}}
+                </ng-template>
+                </ngx-datatable-column>
+
+                 <ngx-datatable-column name="Location" prop="admin_amount">
+                  <ng-template ngx-datatable-header-template>
+                    {{'service-report.admin-amount' | translate}}
+                  </ng-template>
+                  <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                    <!-- {{ row.service_provider_name == ''?  '' :   row.admin_amount}} -->
+                    {{row.admin_amount}}
+
+                </ng-template>
+                </ngx-datatable-column>
+
+
+                <ngx-datatable-column name="Created Date" prop="created_date">
+                  <ng-template ngx-datatable-header-template >
+                    {{'service-report.booking-date' | translate}}
+                    </ng-template>
+                  <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                      {{row.booking_date }}
+                  </ng-template>
+                  </ngx-datatable-column>
+
+                   <ngx-datatable-column name="Location" prop="message">
+                  <ng-template ngx-datatable-header-template>
+                    {{'service-report.status' | translate}}
+                  </ng-template>
+                  <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                    {{row.message}}
+                </ng-template>
+                </ngx-datatable-column>
+          
+            </ngx-datatable>
+          <!-- </div> -->
+           </div>  
+       </div>
+            </div>
+          </div>
+               <div *ngIf="getDetails?.length == 0" class="row mt-40">
+          <div  class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mainbox">
+     
+            <div class="boxblock">
+             <i class="fas fa-frown-open"></i>
+             </div>
+              <p class="mt-20 mb-20">  {{'service-report.not-matches' | translate}}<br>   {{'service-report.please-try' | translate}}</p> </div>
+            </div>
+      <!--   <ng-container *ngIf="getDetails?.length == 0">
+            No Data Found
+        </ng-container> -->
+        
+ 
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="aouth-container lg-container">
+    <app-sidebar></app-sidebar>
+<div class="container">
+    <div class="main-content">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h3>{{'myProfile.my-profile' | translate}}</h3>
+        </div>
+      </div>
+      <div class="row profile-content">
+        <form [formGroup]="profileForm">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="profile-cover">
+            <div class="icons-bg" style="background-image: url('./assets/images/pattern-bg.png')"></div>
+          </div>
+          <div class="profile-photo-box">
+            <label class="profile-edit"><input accept="image/*" type="file"  name="file" 
+              style="display:none"  (change)="onFileChange($event)"> </label>
+            <div class="profile-photo shadow-lg">
+              <span>
+                <!-- <img *ngIf="profileData?.image == null" src="https://cdn.evbuc.com/eventlogos/91884425/imagenotavailablegrid.jpg"> -->
+                <!-- <img *ngIf="!imageSelect" [src]= "imageSrc"> -->
+                <img [src] = "imageSrc == undefined ? profileData?.image: imageSrc" >
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-40">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row form-row">
+                
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                    <div class="form-field__control" data-fa-icon="&#xf007;">
+                      <input id="name" type="text" onKeyPress="if(this.value.length == 50) return false;" formControlName="name" class="form-field__input" placeholder=""/>
+                      <label for="name" class="form-field__label">{{'myProfile.form-name' | translate}}</label>
+
+                    </div>
+                  </div>
+                  <div *ngIf="profileForm.controls['name'].errors && ( !profileForm.controls['name'].pristine || submitted ||profileForm.controls['name'].touched )" class="error-msg">
+                    <div [hidden]="!profileForm.controls['name'].errors.required">{{'customer-registration.name-is-required' | translate}}</div>
+                    <div [hidden]="!profileForm.controls.name.hasError('minlength')">{{'customer-registration.minimum-name' | translate}}  </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 date_profile">
+                  <div class="form-group form-field">
+                    <div class="form-field__control" data-fa-icon="&#xf023;">
+                      <input  [max]="tomorrow" readonly="" (click)="picker.open()" [matDatepicker]="picker" id="birthday" formControlName="birthday"  type="text" class="form-field__input" placeholder="" />
+
+                     
+                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+
+
+                       <label for="email" class="form-field__label">{{'myProfile.form-birthday' | translate}}</label>
+                    </div>
+                  </div>
+                  
+                </div>
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                    <div class="form-field__control" data-fa-icon="&#xf0e0;">
+                      <input id="email" type="text" formControlName="email"  class="form-field__input" placeholder="" readonly/>
+                       <label for="email" class="form-field__label">{{'myProfile.form-email' | translate}}</label>
+                    </div>
+                  </div>
+                  
+                </div>
+
+
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                    <div class="form-field__control" data-fa-icon="&#xf095;">
+                      <input id="telephone" type="text" onkeypress="if(this.value.length==15) return false;return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 "  formControlName="mobile" class="form-field__input" placeholder=""/>
+                      <label for="telephone" class="form-field__label">{{'myProfile.form-telephone' | translate}}</label>
+                    </div>
+                  </div>
+                  <div *ngIf="profileForm.controls['mobile'].errors && ( !profileForm.controls['mobile'].pristine || submitted ||profileForm.controls['mobile'].touched )" class="error-msg">
+                    <div [hidden]="!profileForm.controls['mobile'].errors.required">{{'customer-registration.Mobile-required' | translate}}</div>
+                    <div [hidden]="!profileForm.controls['mobile'].hasError('minlength')">{{'customer-registration.length-mob' | translate}} </div>
+                  </div>
+                   <input  type="hidden"  formControlName="last_profile_image" />
+                </div>
+               
+              </div>
+              <div class="row btn-row mt-20">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <button (click) = "onSubmit()" class="btn btn-primary d-block rounded-pill btn-lg">{{'myProfile.button-update' | translate}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+
+    </div>
+  </div>
+  </div>

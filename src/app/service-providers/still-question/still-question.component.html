@@ -1,0 +1,136 @@
+<div class="aouth-container lg-container">
+    <app-services-side-bar *ngIf="userId != null"></app-services-side-bar>
+    <div class="container">
+      <div class="main-content">
+        <div class="still-questions">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <!-- <h6 class="mb-10 text-muted">CleanRex</h6> -->
+              <h2>{{'stillQuestion.still-questions' | translate}}</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="still-banner">
+                <span class="d-block"><img src="./assets/images/professional-cleaning-tips.png"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="st-services-grid">
+                
+                <div *ngFor="let Category of Category" routerLink="/service-providers/faq/{{Category.id}}" class="st-service-box">
+                  <div class="st-title-box">
+                    <div class="st-icon-box">
+                      <img src="{{Category.image}}">
+                      <div class="shape-bg"></div>
+                    </div>
+                    <div class="title-sm" innerHTML="{{Category.category_name}}"></div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h2>Sorry, We Can't</h2>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="cleaning-services-area">
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="cs-content-wrapper">
+                      <div class="cs-image-wrapper">
+                        <span><img src="./assets/images/home-cleaning-service.png" alt=""></span>
+                      </div>
+                      <div class="listings-wrapper">
+                        <div class="border-div">
+                        <div class="scrollar-main">
+                          <ul class="list-inline">
+                            <li>
+                              <div class="sr-box" data-image="">
+                                <div class="sr-inner" data-number="01">
+                                  <span>Do Exterior Window Cleaning</span>
+                                  <a href="">Read More</a>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="sr-box">
+                                <div class="sr-inner" data-number="02">
+                                  <span>Carry Heavy Items (20kg+)</span>
+                                  <a href="">Read More</a>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="sr-box">
+                                <div class="sr-inner" data-number="03">
+                                  <span>Reach Inaccessible Surfaces.</span>
+                                  <a href="">Read More</a>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="sr-box">
+                                <div class="sr-inner" data-number="04">
+                                  <span>Deal with Hazardous Waste please visit: gov.uk</span>
+                                  <a href="">Read More</a>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="sr-box">
+                                <div class="sr-inner" data-number="05">
+                                  <span>Silver Cleaning and Polishing</span>
+                                  <a href="">Read More</a>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="sr-box">
+                                <div class="sr-inner" data-number="06">
+                                  <span>Pest Control</span>
+                                  <a href="">Read More</a>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="sr-box">
+                                <div class="sr-inner" data-number="07">
+                                  <span>Clean Your Garage</span>
+                                  <a href="">Read More</a>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="about-services-area pt-90 pt-md-60">
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                    <h2 class="mb-15">Your free time is precious we are here to help you to make the most of it</h2>
+                    <p>Login to Cleanzy through our web or app to experience the simple, fast and hassle-free way of cleaning.</p>
+                    <div class="action-btns text-center mt-40">
+                      <a href="" class="btn btn-primary rounded-pill">Domestic Cleaning</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>

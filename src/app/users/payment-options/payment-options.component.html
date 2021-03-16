@@ -1,0 +1,144 @@
+<div class="aouth-container lg-container">
+    <app-sidebar></app-sidebar>
+    <div class="container">
+      <div class="main-content">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3>Payment Options</h3>
+            <h6 class="po-sub-title">Pick A Payment Method</h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="po-options-grid">
+              <div class="po-grid-item">
+                <div class="selectable-box">
+                  <input type="checkbox" name="" class="chk-box" name="credit-card" id="credit-card">
+                  <label for="credit-card">Credit Card</label>
+                </div>
+              </div>
+              <div class="po-grid-item">
+                <div class="selectable-box">
+                  <input type="checkbox" name="" class="chk-box" name="debit-card" id="debit-card">
+                  <label for="debit-card">Debit Card</label>
+                </div>
+              </div>
+              <div class="po-grid-item">
+                <div class="selectable-box">
+                  <input type="checkbox" name="" class="chk-box" name="mb-way" id="mb-way">
+                  <label for="mb-way">MB Way</label>
+                </div>
+              </div>
+              <div class="po-grid-item">
+                <div class="selectable-box">
+                  <input type="checkbox" name="" class="chk-box" name="paypal" id="paypal">
+                  <label for="paypal">PayPal</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 po-card-preview">
+            <div class="po-card-container">
+              <div class="po-card-inner">
+                <div class="po-card-logo">
+                  <span><img src="./assets/images/visa.png"></span>
+                </div>
+                <div class="po-card-number">
+                  <span>4642</span>
+                  <span>9900</span>
+                  <span>0000</span>
+                  <span>0000</span>
+                </div>
+                <div class="po-card-info">
+                  <div class="info-item">
+                    <div class="info-title-sm">Nome como está no cartão</div>
+                    <div class="info-title-lg">DIOGO C FERREIRA</div>
+                  </div>
+                  <div class="info-item">
+                    <div class="info-title-sm">Validade</div>
+                    <div class="info-title-lg">09/23</div>
+                  </div>
+                </div>
+              </div>
+              <div class="po-card-bg" style="background-image: url(./assets/images/card-bg.png);"></div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 po-payment">
+            
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row form-row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+                    <div class="form-group form-field">
+                      <div class="form-field__control">
+                        <input id="card-number" type="text" class="form-field__input" placeholder=""/>
+                        <label for="card-number" class="form-field__label">Card Number</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+                    <div class="row">
+                      <div class="col-xl-7 col-lg-7 col-sm-6 col-xs-12">
+                        <div class="form-group form-field">
+                          <div class="form-field__control">
+                            <input id="security-code" type="text" class="form-field__input" placeholder=""/>
+                            <label for="security-code" class="form-field__label">Security Code</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-5 col-lg-5 col-sm-6 col-xs-12">
+                        <div class="form-group form-field">
+                          <div class="form-field__control">
+                            <input id="validade" type="text" class="form-field__input" placeholder=""/>
+                            <label for="validade" class="form-field__label">Validade</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+                    <div class="row">
+                      <div class="col-xl-4 col-lg-5 col-sm-6 col-xs-12">
+                        <div class="form-group form-field">
+                          <div class="form-field__control">
+                            <input id="cvv" type="text" class="form-field__input" placeholder=""/>
+                            <label for="cvv" class="form-field__label">CVV</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-8 col-lg-7 col-sm-6 col-xs-12">
+                        <div class="form-group form-field">
+                          <div class="form-field__control select-box">
+                            <div class="select">
+                              <div class="select">
+                                  <select id="pay" class="form-field__input">
+                                    <option value="">Pay - R$120,00</option>
+                                    <option value="">Item 1</option>
+                                    <option value="">Item 2</option>
+                                    <option value="">Item 3</option>
+                                    <option value="">Item 4</option>
+                                  </select>
+                                </div>
+                            </div>
+                            <label for="pay" class="form-field__label">Pay</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row btn-row mt-20">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button class="btn btn-primary d-block rounded-pill btn-lg" style="min-width: 150px;">Login</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,49 @@
+<div class="sidebar-wrapper1 sidebar-wrapper" >
+    <div class="sidebar-inner">
+      <div class="toggle-mobile"></div>
+      <div class="user-info">
+        <div class="user-photo">
+          <div class="user-photo-inner">
+            <span>
+              <img   src={{img}}>
+            </span>
+          </div>
+        </div>
+        <h5 class="user-name text-white">{{serProfileData?.name}}</h5>
+        <!-- <div class="btn btn-warning rounded-pill d-block mb-10">
+          <span class="fas fa-dice-five"></span> {{happy_point}} Happy Point</div> -->
+      </div>
+      
+      <div class="user-navs">
+        <ul class="list-inline">
+          <li>
+          	<a routerLink="/service-providers/service-profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf2bd;">{{'sidebar.my-profile' | translate}}</a>
+        </li>
+        <li>
+        	<a routerLink="/service-providers/service-request" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf4fc;">{{'sidebar.service-req' | translate}}</a>
+        </li>
+        <li>
+         	<a  routerLink="/service-providers/service-inprogress" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf2f1;">{{'sidebar.in-progress' | translate}}</a>
+        </li>
+        <li>
+        	<a  routerLink="/service-providers/service-complete-cancel" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf562;">{{'sidebar.complete_cencel' | translate}}</a>
+        </li>
+        <li>
+        	<a  routerLink="/service-providers/service-setting" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf013;">{{'sidebar.settings' | translate}}</a>
+        </li>
+
+        
+         <!-- <li><a routerLink="/service-providers/invite-friend" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf069;">Invite a Friend</a></li>
+          <li><a routerLink="/service-providers/bonus-cleaning" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf49e;">My Bonus Cleaning Packages</a></li> -->
+         
+        <li>
+        	<a  routerLink="/service-providers/service-report" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf56c;">{{'sidebar.reports' | translate}}</a>
+        </li>
+        <li>
+        	<!-- <a  routerLink="/service-providers/service-subscription" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf0f3;">Subscription</a> -->
+        </li>
+         <li style="cursor: pointer;"><a (click)="Logout()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf2f5;">{{'sidebar.Log-out' | translate}}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,27 @@
+<div id="StripeID">
+<!-- <div *ngIf="PaymentType == 'Stripe'"> -->
+<b style="font-weight: 500;
+    font-size: 20px;">Pay with Credit Card</b>
+<h3><h3>Enter your card details</h3></h3>
+        <div class="service-page pt-20 pl-20 pr-20 pb-20">
+         <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
+  <!-- <input type="text" formControlName="name" placeholder="Name"> -->
+  <div id="card-element" class="field"></div>
+  <button type="submit" class="btn btn-primary btn-lg rounded-pill mt-30" style="width: 152px;">
+    Pay now
+  </button>
+</form>
+      </div>
+</div>
+      
+<!-- <div class="paypal-content" id="paypalID"  class="displayNone">
+<b style="font-weight: 500;
+    font-size: 20px;">Pay with Paypal</b>
+<iframe *ngIf="PaymentType == 'Paypal'" width="100%" height="100%" style="border: 0px;" [src]="sanitizer.bypassSecurityTrustResourceUrl(PaypalUrl)"></iframe>
+
+</div>   -->
+  <style type="text/css">
+    .displayNone{
+      display: none;
+    }
+  </style>

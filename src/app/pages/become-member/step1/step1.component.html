@@ -1,0 +1,874 @@
+<div id="step1ID" class="step-1">
+  <div class="slider-area--home sp-step-banner">
+    <div class="container caption pt-190 pb-70">
+      <div class="row justify-content-center w-100">
+        <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12 w-100">
+          <div class="content-wrap">
+            <div class="sp-steps-grid">
+              <div class="grid-item">
+                <div class="padding-box">
+                  <div (click)="back_basicInfo()" class="sp-box active">
+                    <div class="active-icon"></div>
+                    <div class="box-ctn">
+                      <span class="fal fa-user"></span>
+                      <span>{{'registration.heading1' | translate}} <br> {{'registration.heading11' | translate}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-item">
+                <div class="padding-box">
+                  <div (click)="step1_back_verify()" class="sp-box">
+                    <div class="box-ctn">
+                      <span class="fal fa-portrait"></span>
+                      <span>{{'registration.heading2' | translate}} <br> {{'registration.heading22' | translate}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-item">
+                <div class="padding-box">
+                  <div  class="sp-box">
+                  <!-- <div (click)="step1_back_available()" class="sp-box"> -->
+                    <div class="box-ctn">
+                      <span class="fas fa-business-time"></span>
+                      <span>{{'registration.heading3' | translate}} <br></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-item">
+                <div class="padding-box">
+                  <div class="sp-box">
+                    <div class="box-ctn">
+                      <span class="fal fa-clock"></span>
+                      <span>{{'registration.heading4' | translate}} <br> {{'registration.heading44' | translate}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="image-bg" style="background-image: url('./assets/images/steps-bg.jpg');"></div>
+  </div>
+<div class="steps-content-wrapper pt-80 pb-80 pt-md-60 pb-md-60 pt-xs-60 pb-xs-40">
+  <div class="container lg-container">
+    <div class="steps-heading text-center mb-3">
+      <h2>{{'registration.title1' | translate}}</h2>
+    </div>
+    <form [formGroup]="stepOneForm">
+    <div class="row form-row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+        <div class="sp-photo-wrap shadow-sm">
+          <div class="sp-photo-box">
+            <label class="sp-photo-box" for="photo_upload">
+              <input type="file" accept="image/*" name="" (change)="onSingleFileChange($event)" id="photo_upload" name="photo_upload" class="upload_input">
+              <img class="fixImage" *ngIf ="selectImg == null" src ="./assets/images/default-user-image.png">
+              <img class="fixImage" *ngIf ="selectImage" [src]="url">
+            </label>
+          </div>
+        </div>
+      </div>
+      <!-- (blur)="addClass('form-field--is-filled')"  -->
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group form-field" id="nameIdInput"> 
+            <div class="form-field__control" data-fa-icon="&#xf007;">
+              <input (change)= "func.addFocus()" id="name" type="text" onKeyPress="if(this.value.length == 50) return false;"  formControlName="name" class="form-field__input" placeholder=""/>
+              <label for="name" class="form-field__label">{{'registration.name' | translate}}</label>
+            </div>
+            <div *ngIf="stepOneForm.controls['name'].errors && ( !stepOneForm.controls['name'].pristine || submitted ||stepOneForm.controls['name'].touched )" class="error-msg">
+              <div [hidden]="!stepOneForm.controls['name'].errors.required">{{'customer-registration.name-is-required' | translate}}</div>
+              <div [hidden]="!stepOneForm.controls.name.hasError('minlength')">{{'customer-registration.minimum-name' | translate}}</div>
+            </div>
+          </div>
+      </div>
+      
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group form-field">
+            <div class="form-field__control" data-fa-icon="&#xf0e0;">
+              <input (change)= "func.addFocus()" id="email" type="email" formControlName="email" onKeyPress="if(this.value.length==50) return false;"  (change)="emailCheck()" class="form-field__input" placeholder=""/>
+              <label for="email" class="form-field__label">{{'registration.email' | translate}}</label>
+            </div>
+            <div *ngIf="stepOneForm.controls['email'].errors && ( !stepOneForm.controls['email'].pristine || submitted ||stepOneForm.controls['email'].touched )" class="error-msg">
+              <div [hidden]="!stepOneForm.controls['email'].errors.required">{{'login.email-is-required' | translate}}</div>
+              <div [hidden]="!stepOneForm.controls['email'].errors.pattern">{{'login.invalid-email' | translate}}</div>
+            </div>
+          </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group form-field">
+                  <div class="form-field__control select-box" data-fa-icon="&#xf10b;">
+                    <div class="select">
+                        <select formControlName="phonecode" class="form-field__input">
+                            <option *ngFor="let phonec of phoneCodeData;" value="{{phonec.phonecode}}">{{phonec.nicename}}  +{{phonec.phonecode}}  </option>
+                        </select>
+                    </div>
+                    <label for="phonecode" class="form-field__label">{{'registration.country-code' | translate}}</label>
+                  </div>
+                   <div *ngIf="stepOneForm.controls['phonecode'].errors && ( !stepOneForm.controls['phonecode'].pristine || submitted ||stepOneForm.controls['phonecode'].touched )" class="error-msg">
+              <div [hidden]="!stepOneForm.controls['phonecode'].errors.required">{{'customer-registration.Country-required' | translate}}</div>
+             
+            </div>
+                </div>
+       <!--  <div class="form-group form-field">
+            <div class="form-field__control" data-fa-icon="&#xf10b;">
+              
+              <label for="phonecode" class="form-field__label">Country Code</label>
+               <select formControlName="phonecode" class="form-field__input">
+                        <option *ngFor="let phonec of phoneCodeData;" value="{{phonec.phonecode}}">{{phonec.nicename}}  +{{phonec.phonecode}}  </option>
+                      </select>
+            </div>
+            <div *ngIf="stepOneForm.controls['phonecode'].errors && ( !stepOneForm.controls['phonecode'].pristine || submitted ||stepOneForm.controls['phonecode'].touched )" class="error-msg">
+              <div [hidden]="!stepOneForm.controls['phonecode'].errors.required">Country code is required.</div>
+             
+            </div>
+          </div> -->
+      </div> 
+
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group form-field">
+            <div class="form-field__control" data-fa-icon="&#xf10b;">
+              <input (change)= "func.addFocus()" id="mobile" type="text"  onkeypress="if(this.value.length==15) return false;return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 "  
+              formControlName="mobile" class="form-field__input" placeholder=""/>
+              <label for="mobile" class="form-field__label">{{'registration.mobile' | translate}}</label>
+            </div>
+            <div *ngIf="stepOneForm.controls['mobile'].errors && ( !stepOneForm.controls['mobile'].pristine || submitted ||stepOneForm.controls['mobile'].touched )" class="error-msg">
+              <div [hidden]="!stepOneForm.controls['mobile'].errors.required">{{'customer-registration.Mobile-required' | translate}}</div>
+              <div [hidden]="!stepOneForm.controls['mobile'].hasError('minlength')">{{'customer-registration.length-mob' | translate}}</div>
+            </div>
+          </div>
+      </div>
+
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group form-field">
+            <div class="form-field__control" data-fa-icon="&#xf023;">
+              <input (change)= "func.addFocus()"  [type]="showHideBtn ? 'password' : 'text'" onKeyPress="if(this.value.length==8) return false;"  id="password" type="password" 
+              formControlName="password" class="form-field__input" placeholder=""/>
+              <label for="password" class="form-field__label">{{'registration.password' | translate}}</label>
+              <a href="javascript:void(0);" (click)="showHidePassword()" id="show"><span class="input-icon"
+                  [ngClass]="{'fa': true, 'fa-eye': (!showHideBtn), 'fa-eye-slash': (showHideBtn)}"></span></a>
+            </div>
+            <div *ngIf="stepOneForm.controls['password'].errors && ( !stepOneForm.controls['password'].pristine || submitted ||stepOneForm.controls['password'].touched )" class="error-msg">
+              <div [hidden]="!stepOneForm.controls['password'].errors.required">{{'login.Password-is-required' | translate}}</div>
+              <div [hidden]="!stepOneForm.controls['password'].hasError('minlength')">{{'login.minimum' | translate}} </div>
+            </div>
+          </div>
+      </div>
+     <!--   <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+    
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+
+        <div class="form-group form-field">
+            <div class="form-field__control" data-fa-icon="&#xf10b;">
+              <input id="reffer_by_code" type="text" 
+              formControlName="reffer_by_code" class="form-field__input" placeholder=""/>
+              <label for="reffer_by_code" class="form-field__label">Reffer Code</label>
+             
+            </div>
+         
+          </div>
+             <div class="form-group form-field">
+            <div class="form-field__control" data-fa-icon="&#xf10b;">
+              <input type="text"  formControlName="reffer_by_code" class="form-field__input" placeholder="" autocomplete="off"/>
+              <label for="reffer_by_code" class="form-field__label">Reffer Code</label>
+            </div>
+            
+          </div> 
+      </div>
+          </div>
+      </div> -->
+
+
+
+
+
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center mt-30">
+        <button (click)="submitForm1()" class="btn btn-primary rounded-pill btn-lg"  style="min-width: 150px;">{{'registration.next' | translate}}</button>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+</div>
+ <!--------------------------------------Form 2 ------------------------------------>
+<div id="step2ID" class="displayNone">
+  <div class="slider-area--home sp-step-banner">
+    <div class="container caption pt-190 pb-70">
+      <div class="row justify-content-center w-100">
+        <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12 w-100">
+          <div class="content-wrap">
+            <div class="sp-steps-grid">
+              <div class="grid-item">
+                <div class="padding-box">
+                  <div (click)="back_basicInfo()"  class="sp-box active">
+                    <div class="active-icon"></div>
+                    <div class="box-ctn">
+                      <span class="fal fa-user"></span>
+                      <span>{{'registration.heading1' | translate}} <br> {{'registration.heading11' | translate}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-item">
+                <div class="padding-box">
+                  <div (click)="step2_back_verify()" class="sp-box active">
+                    <div class="active-icon"></div>
+                    <div class="box-ctn">
+                      <span class="fal fa-portrait"></span>
+                      <span>{{'registration.heading2' | translate}} <br> {{'registration.heading22' | translate}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-item">
+                <div class="padding-box">
+                  <div (click)="step2_back_available()" class="sp-box">
+                    <div class="box-ctn">
+                      <span class="fas fa-business-time"></span>
+                      <span>{{'registration.heading3' | translate}} <br></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-item">
+                <div class="padding-box">
+                  <div class="sp-box">
+                    <div class="box-ctn">
+                      <span class="fal fa-clock"></span>
+                      <span>{{'registration.heading4' | translate}} <br> {{'registration.heading44' | translate}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="image-bg" style="background-image: url('./assets/images/steps-bg.jpg');"></div>
+  </div>
+<div class="steps-content-wrapper pt-80 pb-80 pt-md-60 pb-md-60 pt-xs-60 pb-xs-40">
+  <div class="container lg-container">
+    <div class="steps-heading text-center mb-40">
+      <h2>{{'registration.title2' | translate}}</h2>
+    </div>
+    <form [formGroup]="stepTwoForm">
+    <div class="row form-row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="row justify-content-center">
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <h5>{{'registration.title3' | translate}}</h5>
+          </div>
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+           <!--  <div class="form-group form-field">
+               
+                  <select class="form-control" (change)="onChange($event)" formControlName="pin_code_id" id="pin_code" name="pin_code">
+                    <option value="" >Post Code</option>
+                    <option *ngFor="let pin of postObj" [value]="pin.id">
+                       {{pin?.pin_code}}
+                    </option>
+                  </select>
+              </div>
+
+              <div *ngIf="stepTwoForm.controls['pin_code_id'].errors && ( !stepTwoForm.controls['pin_code_id'].pristine || submitted ||stepTwoForm.controls['pin_code_id'].touched )" class="error-msg">
+                <div [hidden]="!stepTwoForm.controls['pin_code_id'].errors.required">Service Area is required.</div>
+              </div> -->
+
+               <div class="form-group form-field" > 
+            <div class="form-field__control" data-fa-icon="&#xf007;">
+              <!-- <input ngxAutocomPlace autocomplete="off" (selectedPlace)="placeChanged($event)"  id="name" type="text" formControlName="location" class="form-field__input"/> -->
+              <input  autocomplete="off" placeholder="" #searchhh  id="name" type="text" formControlName="location" class="form-field__input"/>
+
+              <label for="name" class="form-field__label">Location</label>
+            </div>
+            <div *ngIf="stepTwoForm.controls['location'].errors && ( !stepTwoForm.controls['location'].pristine || submitted ||stepTwoForm.controls['location'].touched )" class="error-msg">
+              <div [hidden]="!stepTwoForm.controls['location'].errors.required">{{'customer-registration.Location-required' | translate}}</div>
+            </div>
+          </div>
+
+          </div>
+        </div>
+        <div class="row justify-content-center mt-20">
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <h5>{{'registration.type' | translate}}</h5>
+          </div>
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="po-options-grid d-block m-0">
+                  <div class="selectable-box">
+                    <input type="radio" (change)="func.addFocus()" formControlName="provider_type" value="1" 
+                    (click)="check_type_individual()" class="chk-box" name="provider_type" 
+                    id="individual">
+                    <label for="individual">{{'registration.individual' | translate}}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="po-options-grid d-block m-0">
+                  <div class="selectable-box">
+                    <input type="radio" class="chk-box" formControlName="provider_type" value="2" 
+                    (click)="check_type_public()" name="provider_type" id="public">
+                    <label for="public">{{'registration.public' | translate}}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="po-options-grid d-block m-0">
+                  <div class="selectable-box">
+                    <input type="radio" class= "chk-box" (change)= "func.addFocus()"
+                     (click)="check_type_private()" formControlName="provider_type" value="3"  
+                     name="provider_type" id="private">
+                    <label for="private">{{'registration.private' | translate}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="stepTwoForm.controls['provider_type'].errors && ( !stepTwoForm.controls['provider_type'].pristine || submitted ||stepTwoForm.controls['provider_type'].touched )" class="error-msg">
+              <div [hidden]="!stepTwoForm.controls['provider_type'].errors.required">{{'customer-registration.type-required' | translate}}</div>
+            </div>
+          </div>
+          <div *ngIf="TeamSize" class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12 mt-10">
+            <div class="form-group form-field">
+                <div class="form-field__control" data-fa-icon="&#xf007;">
+                  <input (change)= "func.addFocus()" id="team_size" type="text" 
+                   onkeypress="if(this.value.length==3) return false;return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 " formControlName="team_size" class="form-field__input" placeholder="" />
+                  <label for="team_size" class="form-field__label">{{'registration.team-size' | translate}}</label>
+                </div>
+              </div>
+              <div *ngIf="team_valid && stepTwoForm.controls['team_size'].errors && ( !stepTwoForm.controls['team_size'].pristine || submitted ||stepTwoForm.controls['team_size'].touched )" class="error-msg">
+                <div [hidden]="!stepTwoForm.controls['team_size'].errors.required">{{'customer-registration.Teamsize-required' | translate}}</div>
+              </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-20 choose-services">
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <h5>{{'registration.choose-service' | translate}}</h5>
+          </div>
+          <div  class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+              <div *ngFor="let img of service_obj" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-20">
+                <div class="card shadow-sm pl-20 pr-20 pt-40 pb-40 d-block text-center">
+                  <img src="{{img.image}}">
+                  <h5 [ngClass]="[img.selected == 'Selected' ? 'mt-25 theme-color' : 'mt-25']" class="mt-25">{{img.service_name}}</h5> 
+                  <a [ngClass]="[img.selected == 'Choose' ? 'btn btn-outline-secondary rounded-pill' : 'btn btn-primary rounded-pill']" 
+                  (click)="imageChoose(img.id)" style="min-width: 180px;    min-height: 38px;">
+                  <span *ngIf = "img.selected == 'Selected'" class="fal fa-check mr-1"></span>{{img.selected}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row justify-content-center mt-20 choose-services">
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <h5>Additional Services</h5>
+          </div>
+          <div  class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <div class="row text-center">
+              <div *ngFor="let add of additional_obj" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-20">
+                <div  class="card shadow-sm pl-20 pr-20 pt-40 pb-40 d-block">
+                  <img src="{{add.image}}">
+                  <h5 [ngClass]="[add.selected == 'Selected' ? 'mt-25 theme-color' : 'mt-25']">{{add.service_name}}</h5> 
+                  <a [ngClass]="[add.selected == 'Choose' ? 'btn btn-outline-secondary rounded-pill' : 'btn btn-primary rounded-pill']"  (click)="imageAdd(add.id)" style="min-width: 180px;">
+                    <span *ngIf = "add.selected == 'Selected'" class="fal fa-check mr-1"></span>{{add.selected}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="row justify-content-center mt-20 license-number">
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <h5>{{'registration.VAT-number' | translate}}</h5>
+          </div>
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group form-field">
+                <div class="form-field__control" data-fa-icon="&#xf3ed;">
+                  <input id="license_number" (change)= "func.addFocus()" onkeypress="if(this.value.length==15) return false;return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 " type="text" formControlName="vat_number" class="form-field__input" placeholder=""/>
+                  <label for="license_number" class="form-field__label">{{'registration.VAT-number' | translate}}</label>
+                </div>
+              </div>
+              <div *ngIf="stepTwoForm.controls['vat_number'].errors && ( !stepTwoForm.controls['vat_number'].pristine || submitted ||stepTwoForm.controls['vat_number'].touched )" class="error-msg">
+                <div [hidden]="!stepTwoForm.controls['vat_number'].errors.required">{{'customer-registration.VAT-Number-required' | translate}}</div>
+              </div>
+          </div>
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group form-field">
+                <div class="input-btn-small">
+                  <!-- <a  class="btn btn-outline-primary rounded-pill" multiple = "multiple">Browse</a> -->
+                </div>
+                <div class="form-field__control">
+                  <input id="upload_documents" accept=".jpg,.jpeg,.png,.pdf,.doc"  type=file  multiple = "multiple" (change)="onFileChange($event)" 
+                  class="form-field__input mt-3 mb-2 text-color" placeholder=""/>
+                  <!-- <label for="upload_documents" class="form-field__label">Upload License Documents</label> -->
+                </div>
+                <!-- <div *ngIf="stepTwoForm.controls['doc_name'].errors && ( !stepTwoForm.controls['doc_name'].pristine || submitted ||stepTwoForm.controls['doc_name'].touched )" class="error-msg">
+                  <div [hidden]="!stepTwoForm.controls['doc_name'].errors.required">Document Name is required.</div>
+                </div> -->
+              </div>
+          </div>
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <div class="alert alert-warning" role="alert">
+              {{'registration.image-format' | translate}}
+            </div>
+          </div>
+          
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+              <div *ngFor='let url of images; let i = index' class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 mb-20">
+                <div class="card shadow-sm">
+                  <div (click)="closeImage(i)" class="close-icon-thumb"></div>
+                  <img style="cursor: pointer;" id="idimage" [src]="url" (click)="newTabImage(i)">
+                </div>
+              </div>
+            
+            </div>
+          </div>
+         <!--  <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group form-field">
+                <div class="form-field__control" data-fa-icon="&#xf3d1;">
+                  <input id="rate" type="text" (change)= "func.addFocus()" onkeypress="return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 " formControlName="rate_per_hour" class="form-field__input" placeholder=""/>
+                  <label for="rate" class="form-field__label">Rate per hour (Per member)</label>
+                </div>
+                <div *ngIf="stepTwoForm.controls['rate_per_hour'].errors && ( !stepTwoForm.controls['rate_per_hour'].pristine || submitted ||stepTwoForm.controls['rate_per_hour'].touched )" class="error-msg">
+                  <div [hidden]="!stepTwoForm.controls['rate_per_hour'].errors.required">Rate Per Hour is required.</div>
+                </div>
+              </div>
+          </div> -->
+
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <h3>{{'registration.card_details' | translate}}</h3>
+          </div>
+         
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12 basic_info">
+            <div class="row form-row">
+              <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field" id="nameIdInput"> 
+                    <div class="form-field__control" data-fa-icon="&#xf007;">
+                      <input (change)= "func.addFocus()" id="banker_name" type="text" onKeyPress="if(this.value.length == 30) return false;"  formControlName="banker_name" class="form-field__input" placeholder=""/>
+                      <label for="banker_name" class="form-field__label">{{'registration.banker_name' | translate}}</label>
+                    </div>
+                    <div *ngIf="stepTwoForm.controls['banker_name'].errors && ( !stepTwoForm.controls['banker_name'].pristine || submitted ||stepTwoForm.controls['banker_name'].touched )" class="error-msg">
+                      <div [hidden]="!stepTwoForm.controls['banker_name'].errors.required">{{'registration.banker_name_validation' | translate}}</div>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field" id="nameIdInput"> 
+                    <div class="form-field__control" data-fa-icon="&#xf007;">
+                      <input (change)= "func.addFocus()" id="bank_name" type="text" onKeyPress="if(this.value.length == 30) return false;"  formControlName="bank_name" class="form-field__input" placeholder=""/>
+                      <label for="bank_name" class="form-field__label">{{'registration.bank_name' | translate}}</label>
+                    </div>
+                    <div *ngIf="stepTwoForm.controls['bank_name'].errors && ( !stepTwoForm.controls['bank_name'].pristine || submitted ||stepTwoForm.controls['bank_name'].touched )" class="error-msg">
+                      <div [hidden]="!stepTwoForm.controls['bank_name'].errors.required">{{'registration.bank_name_validation' | translate}}</div>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field" id="nameIdInput"> 
+                    <div class="form-field__control" data-fa-icon="&#xf007;">
+                      <input (change)= "func.addFocus()" id="account_number" type="text" onKeyPress="if(this.value.length == 11) return false;"  formControlName="account_number" class="form-field__input" placeholder=""/>
+                      <label for="account_number" class="form-field__label">{{'registration.account_number' | translate}}</label>
+                    </div>
+                    <div *ngIf="stepTwoForm.controls['account_number'].errors && ( !stepTwoForm.controls['account_number'].pristine || submitted ||stepTwoForm.controls['account_number'].touched )" class="error-msg">
+                      <div [hidden]="!stepTwoForm.controls['account_number'].errors.required">{{'registration.account_number_validation' | translate}}</div>
+                    </div>
+                  </div>
+              </div> -->
+              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field" id="nameIdInput"> 
+                    <div class="form-field__control" data-fa-icon="&#xf007;">
+                      <input (change)= "func.addFocus()" id="iban_number" type="text" onKeyPress="if(this.value.length == 25) return false;"  formControlName="iban_number" class="form-field__input" placeholder=""/>
+                      <label for="iban_number" class="form-field__label">{{'registration.iban_number' | translate}}</label>
+                    </div>
+                    <div *ngIf="stepTwoForm.controls['iban_number'].errors && ( !stepTwoForm.controls['iban_number'].pristine || submitted ||stepTwoForm.controls['iban_number'].touched )" class="error-msg">
+                      <div [hidden]="!stepTwoForm.controls['iban_number'].errors.required">{{'registration.iban_number_validation' | translate}}</div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="row justify-content-center mt-30">
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12 text-center">
+            <button (click)="submitForm2()" class="btn btn-primary rounded-pill btn-lg" style="min-width: 150px;">{{'registration.next' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+</div>
+
+<!--------------------------------------Form 3 ------------------------------------>
+<div id="step3ID" class="displayNone">
+<div class="slider-area--home sp-step-banner">
+  <div class="container caption pt-190 pb-70">
+    <div class="row justify-content-center w-100">
+      <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12 w-100">
+        <div class="content-wrap">
+          <div class="sp-steps-grid">
+            <div class="grid-item">
+              <div class="padding-box">
+                <div class="sp-box active">
+                  <div class="active-icon"></div>
+                  <div (click)="back_basicInfo()" class="box-ctn">
+                    <span class="fal fa-user"></span>
+                    <span>   {{'registration.heading1' | translate}} <br>  {{'registration.heading11' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-item">
+              <div class="padding-box">
+                <div class="sp-box active">
+                  <div  class="active-icon"></div>
+                  <div (click)="back_verify()" class="box-ctn">
+                    <span class="fal fa-portrait"></span>
+                    <span> {{'registration.heading2' | translate}} <br>  {{'registration.heading22' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-item">
+              <div class="padding-box">
+                <div class="sp-box active">
+                  <div class="active-icon"></div>
+                  <div (click)= "back_available()" class="box-ctn">
+                    <span class="fas fa-business-time"></span>
+                    <span> {{'registration.heading3' | translate}} <br></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-item">
+              <div class="padding-box">
+                <div class="sp-box">
+                  <div class="box-ctn">
+                    <span class="fal fa-clock"></span>
+                    <span> {{'registration.heading4' | translate}} <br>  {{'registration.heading44' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="image-bg" style="background-image: url('./assets/images/steps-bg.jpg');"></div>
+</div>
+
+<div class="steps-content-wrapper pt-80 pb-80 pt-md-60 pb-md-60 pt-xs-60 pb-xs-40">
+  <div class="container lg-container">
+    <div class="steps-heading text-center mb-40">
+      <h2> {{'registration.heading3' | translate}}</h2>
+    </div>
+    <form [formGroup]="stepThreeForm">
+     
+    <div class="row justify-content-center availability-contents">
+      <div  class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+            <div class="abty-box">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="df-item">
+                  <div class="day-name"> {{'registration.monday' | translate}}</div>
+                </div>
+                <div  class="df-item">
+                  <div class="row justify-content-end">
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" id="monday_start"  class="form-control form-control-sm" 
+                        formControlName="monday_start"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval' id="monday_start" placeholder="Start Time" class="form-control form-control-sm" 
+                        formControlName="monday_start"></ejs-timepicker>
+                      </div>
+                    </div>
+                   
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" id="monday_end" class="form-control form-control-sm" 
+                        formControlName="monday_end"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval' id="monday_end" placeholder="End Time" class="form-control form-control-sm" 
+                        formControlName="monday_end"></ejs-timepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+            <div class="abty-box">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="df-item">
+                  <div class="day-name">{{'registration.Tuesday' | translate}}</div>
+                </div>
+                <div class="df-item">
+                  <div class="row justify-content-end">
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm"
+                        formControlName="tuesday_start"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" placeholder="Start Time"
+                        formControlName="tuesday_start"></ejs-timepicker>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm" 
+                         formControlName="tuesday_end"> -->
+                         <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" placeholder="End Time"
+                         formControlName="tuesday_end"></ejs-timepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+            <div class="abty-box">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="df-item">
+                  <div class="day-name">{{'registration.Wednesday' | translate}}</div>
+                </div>
+                <div class="df-item">
+                  <div class="row justify-content-end">
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm" 
+                        formControlName="wednesday_start"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" placeholder="Start Time"
+                        formControlName="wednesday_start"></ejs-timepicker>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm"  
+                        formControlName="wednesday_end"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval'  class="form-control form-control-sm" placeholder="End Time"
+                        formControlName="wednesday_end"></ejs-timepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+            <div class="abty-box">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="df-item">
+                  <div class="day-name">{{'registration.Thursday' | translate}}</div>
+                </div>
+                <div class="df-item">
+                  <div class="row justify-content-end">
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm" 
+                        formControlName="thusday_start"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval'  class="form-control form-control-sm" placeholder="Start Time"
+                        formControlName="thusday_start"></ejs-timepicker>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm"
+                        formControlName="thusday_end"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" placeholder="End Time"
+                        formControlName="thusday_end"></ejs-timepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+            <div class="abty-box">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="df-item">
+                  <div class="day-name">{{'registration.Friday' | translate}}</div>
+                </div>
+                <div class="df-item">
+                  <div class="row justify-content-end">
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm" 
+                        formControlName="friday_start"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval'  class="form-control form-control-sm" placeholder="Start Time"
+                        formControlName="friday_start"></ejs-timepicker>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm"
+                        formControlName="friday_end"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval'  class="form-control form-control-sm" placeholder="End Time"
+                        formControlName="friday_end"></ejs-timepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+            <div class="abty-box">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="df-item">
+                  <div class="day-name">{{'registration.Saturday' | translate}}</div>
+                </div>
+                <div class="df-item">
+                  <div class="row justify-content-end">
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm" 
+                        formControlName="saturday_start"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" placeholder="Start Time"
+                        formControlName="saturday_start"></ejs-timepicker>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm"
+                        formControlName="saturday_end"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" placeholder="End Time"
+                        formControlName="saturday_end"></ejs-timepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+            <div class="abty-box">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="df-item">
+                  <div class="day-name">{{'registration.Sunday' | translate}}</div>
+                </div>
+                <div class="df-item">
+                  <div class="row justify-content-end">
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm" 
+                        formControlName="sunday_start"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" placeholder="Start Time"
+                        formControlName="sunday_start"></ejs-timepicker>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="input-group mb-0 mr-sm-2">
+                        <!-- <input type="time" class="form-control form-control-sm"
+                        formControlName="sunday_end"> -->
+                        <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" placeholder="End Time"
+                        formControlName="sunday_end"></ejs-timepicker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center mt-30">
+            <button class="btn btn-primary rounded-pill btn-lg" (click)="submitForm3()"  style="min-width: 150px;">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+   </form>
+  </div>
+</div>
+</div>
+
+<!----------------------------------- Form 4----------------------------->
+<div id="step4ID" class="displayNone">
+<div class="slider-area--home sp-step-banner">
+  <div class="container caption pt-190 pb-70">
+    <div class="row justify-content-center w-100">
+      <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12 w-100">
+        <div class="content-wrap">
+          <div class="sp-steps-grid">
+            <div class="grid-item">
+              <div class="padding-box">
+                <div class="sp-box active">
+                  <div class="active-icon"></div>
+                  <div class="box-ctn">
+                    <span class="fal fa-user"></span>
+                    <span>{{'registration.heading1' | translate}} <br> {{'registration.heading11' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-item">
+              <div class="padding-box">
+                <div class="sp-box active">
+                  <div class="active-icon"></div>
+                  <div class="box-ctn">
+                    <span class="fal fa-portrait"></span>
+                    <span>{{'registration.heading2' | translate}} <br> {{'registration.heading22' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-item">
+              <div class="padding-box">
+                <div class="sp-box active">
+                  <div class="active-icon"></div>
+                  <div class="box-ctn">
+                    <span class="fas fa-business-time"></span>
+                    <span>{{'registration.heading3' | translate}} <br></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-item">
+              <div class="padding-box">
+                <div class="sp-box">
+                  <div class="box-ctn">
+                    <span class="fal fa-clock"></span>
+                    <span>{{'registration.heading4' | translate}} <br> {{'registration.heading44' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="image-bg" style="background-image: url('./assets/images/steps-bg.jpg');"></div>
+</div>
+
+<div class="steps-content-wrapper pt-80 pb-80 pt-md-60 pb-md-60 pt-xs-60 pb-xs-40">
+  <div class="container lg-container">
+    <div class="row justify-content-center availability-contents">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="thankyou-popup">
+          <div class="card rounded shadow-sm text-center">
+            <img src="./assets/images/file.png">
+            <h4 class="font-weight-700 mt-20 mb-10">{{'registration.heading5' | translate}} <br> {{'registration.heading55' | translate}}</h4>
+            <p>{{'registration.heading555' | translate}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<style type="text/css">
+  .displayNone{
+      display: none !important;
+  }
+</style>

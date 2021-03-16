@@ -1,0 +1,363 @@
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* The Modal (background) */
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
+<div class="aouth-container lg-container ">
+  <app-services-side-bar></app-services-side-bar>
+  <div class="container">
+    <div class="main-content">
+      <div class="row mb-20">
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <h3 class="mb-1">{{ data?.service_name }}</h3>
+            <h3 class="theme-color">${{ data?.service_book_amount }}</h3>
+          </div>
+          <div style="margin-top: 7%;z-index: 999;" id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content" style="    width: 57%; margin-top: 7%; margin-left: 25%; ">
+              <span id="closeSectionId" (click)="closeRatingPopup()" class="close">&times;</span>
+              <h4>{{'service-progress.select-rating' | translate}}</h4>
+              <ul class="list-inline rating-list" style="display: inline-block !important;">
+                <li (click)="countStar(star)" [ngClass]="{'selected': (star <= selectedValue)}"
+                  *ngFor="let star of stars" style="float:left;">
+                  <i class="fa fa-star"></i>
+                </li>
+              </ul>
+              <textarea placeholder="{{'service-progress.enter-reviews' | translate}}" id="review_id" class="form-control"></textarea>
+              <button (click)="finalComplete()" class="btn btn-primary rounded-pill mt-20"
+                style="display: block;max-width: 220px;">Mark as completed</button>
+            </div>
+
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <!-- <a class="btn btn-success rounded-pill" href="#">Executed</a> -->
+            <ul class="list-inline d-flex align-items-center mb-20 justify-content-end">
+              <li *ngIf="data.accept_decline == 'accept_decline'" class="mr-10">
+                <a class="btn btn-primary btn-sm rounded-pill" (click)=" acceptService(data,'accept')">Accept</a>
+              </li>
+              <li *ngIf="data.accept_decline == 'accept_decline'">
+                <a class="btn btn-outline-secondary btn-sm rounded-pill"
+                  (click)="acceptService(data,'decline')">Decline</a>
+              </li>
+              <li *ngIf="data.status == 2 && data.progress_status == 1">
+                <a (click)="markAsCompleted(data)" class="btn btn-primary rounded-pill">Mark As Complete</a>
+              </li>
+              <li *ngIf="data.progress_status == 3 && data.status == 2">
+                <a class="btn btn-primary d-block rounded-pill">Completed</a>
+              </li>
+              <li *ngIf="data.status == 3 && data.progress_status == 1">
+                <a class="btn btn-danger rounded-pill">Decline</a>
+              </li>
+              <li *ngIf="data.status == 2 && data.progress_status == 2">
+                <a class="btn btn-primary d-block rounded-pill">Waiting for customer to mark as completed</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xl-12">
+            <table class="table table-striped table-bordered table-hover">
+              <tbody>
+                <tr>
+                  <td>{{'service-details-customer.location' | translate}}</td>
+                  <!-- <td> {{ data?.location }}</td> -->
+                  <td> {{ userAddress?.floor_flat_aprtment}},{{userAddress?.building_number}},{{userAddress?.location }}
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>{{'service-details-customer.booking-date' | translate}}</td>
+                  <td>{{ data?.booking_date }}</td>
+                </tr>
+                <tr>
+                  <td>{{'service-details-customer.booking-time' | translate}}</td>
+                  <td>{{ data?.booking_time }}</td>
+                </tr>
+                <tr>
+                  <td>{{'service-details-customer.cleaning-duration' | translate}}</td>
+                  <td>{{ data?.cleaning_duration }} Hour</td>
+                </tr>
+                <!--  <tr *ngIf="data?.no_of_pets != ''">
+              <td>Pets</td>
+              <td>{{ data?.no_of_pets }}</td>
+            </tr> -->
+                <tr *ngIf="data?.access_property != ''">
+                  <td>{{'service-details-customer.professional' | translate}}</td>
+                  <td>{{ data?.access_property }}</td>
+                </tr>
+                <tr *ngIf="data?.cleaning_descrip !=''">
+                  <td>{{'service-details-customer.professional-note' | translate}}</td>
+                  <td>{{ data?.cleaning_descrip }}</td>
+                </tr>
+                <tr *ngIf="data?.no_of_pets !=''">
+                  <td>{{'service-details-customer.Pets' | translate}}</td>
+                  <td>{{ data?.no_of_pets }} {{ data?.pets }}</td>
+                </tr>
+
+              </tbody>
+
+            </table>
+          </div>
+          <!--   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p>Location :  {{ data?.location }}</p>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p>Booking Date : {{ data?.booking_date }}</p>
+        </div>
+         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p>Booking Time : {{ data?.booking_time }}</p>
+        </div> 
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p>Cleaning Duration : {{ data?.cleaning_duration }}</p>
+        </div>
+        <div *ngIf="data?.no_of_pets != ''" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p>Pets : {{ data?.no_of_pets }}</p>
+        </div> 
+
+        <div *ngIf="data?.access_property != ''" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p>How can your cleaning professional access the property?
+               <br>{{ data?.access_property }}</p>
+        </div>
+        <div *ngIf="data?.cleaning_descrip !=''" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h5>Your cleaning professional note:</h5>
+          <p>{{ data?.cleaning_descrip }}</p>
+        </div>
+        <div *ngIf="data?.no_of_pets !=''" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h5>Pets:</h5>
+          <p>{{ data?.no_of_pets }} {{ data?.pets }}</p>
+        </div> -->
+
+
+
+
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <div *ngIf="additional_service?.length != 0" class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-35">
+                <div *ngIf="data?.additional_service_ids != ''">
+
+                  <h5>{{'service-details-customer.additional-services' | translate}}</h5>
+                </div>
+                <div class="row">
+                  <div *ngFor="let s of additional_service" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="service_box_checkbox">
+                      <div class="service-box">
+                        <!-- <div class="review-tag"><span>7.0</span> <span class="fas fa-star"></span></div> -->
+                        <div class="sb-image">
+                          <span><img src="{{s?.image}}"></span>
+                        </div>
+                        <h6 class="mb-1 mt-20">{{s?.service_name}}</h6>
+                        <!-- <h3 class="mb-0 theme-color">€ {{s?.amount}}</h3> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div *ngIf="customerReviews?.length != 0" class="row mb-30 p-0 profilenew_service">
+              <div  class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-50">
+                <h5 class="mb-60">{{'service-details-customer.my-reviews' | translate}}</h5>
+                <div  *ngFor="let s of customerReviews; index as i">
+                <div *ngIf="s.user_id == userId">
+                  <div class="oveflow-hidden rounded-circle">
+                    <img class="reviewimg" src="{{s.user_image}}" width="110">
+                  </div>
+                  <div class="whiteblock">
+                    <h6 class="mb-1 mt-40">{{s.name}}</h6>
+                    <div class="ratings-box d-flex align-items-center mb-2">
+                      <span *ngFor="let a of ratingArr; index as i ">
+                        <small *ngIf="s.rating >= a" class="mr-2 text-warning"><i class="fas fa-star"></i></small>
+                        <small *ngIf="s.rating < a" class="mr-2"><i class="fas fa-star"></i></small>
+                      </span>
+                    </div>
+                    <p>{{s.description}}</p>
+                  </div>
+                  </div>
+                </div>
+              </div>
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-50">
+                    <h5 class="mb-60">{{'service-details-customer.customer-review' | translate}}</h5>
+                    <div *ngFor="let s of customerReviews; index as i">
+                      <div *ngIf="s.user_id != userId">
+                        <div class="oveflow-hidden rounded-circle">
+                          <img class="reviewimg" src="{{s.user_image}}" width="110">
+                        </div>
+                        <div class="whiteblock">
+                          <h6 class="mb-1 mt-40">{{s.name}}</h6>
+                          <div class="ratings-box d-flex align-items-center mb-2">
+                            <span *ngFor="let a of ratingArr; index as i ">
+                              <small *ngIf="s.rating >= a" class="mr-2 text-warning"><i class="fas fa-star"></i></small>
+                              <small *ngIf="s.rating < a" class="mr-2"><i class="fas fa-star"></i></small>
+                            </span>
+                          </div>
+                          <p>{{s.description}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+            </div>
+            <!--  <div class="row mb-30 p-0 profilenew_service">
+           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0">
+          <div *ngFor="let s of customerReviews; index as i">
+          <div *ngIf="s.user_id != userId">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-80">
+              <h5>Customer Reviews</h5>
+            </div>       
+            <div class="row">    
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <h5 class="mb-60">Customer Reviews</h5>
+            <div class="oveflow-hidden rounded-circle">
+              <img class="reviewimg" src="{{s.user_image}}" width="110">
+            </div>
+            <div class="whiteblock">
+            <h6 class="mb-1 mt-40">{{s.name}}</h6>
+            <div class="ratings-box d-flex align-items-center mb-2">
+              <span *ngFor="let a of ratingArr; index as i ">
+              <small *ngIf="s.rating >= a" class="mr-2 text-warning"><i class="fas fa-star"></i></small>
+              <small *ngIf="s.rating < a" class="mr-2"><i class="fas fa-star"></i></small>
+            </span>
+            </div>
+            <p>{{s.description}}</p>
+              </div>
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+            <!-- <div  class="row mb-30">
+        <div *ngFor="let s of customerReviews; index as i">
+        <div *ngIf="s.user_id != userId" class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h5>Customer Reviews</h5>
+          </div>           
+        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+          <div class="oveflow-hidden rounded-circle">
+            <img src="{{s.user_image}}" width="110">
+          </div>
+        </div> 
+        <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+          <h6 class="mb-1">{{s.name}}</h6>
+          <div class="ratings-box d-flex align-items-center mb-2">
+            <span *ngFor="let a of ratingArr; index as i ">
+            <small *ngIf="s.rating >= a" class="mr-2 text-warning"><i class="fas fa-star"></i></small>
+            <small *ngIf="s.rating < a" class="mr-2"><i class="fas fa-star"></i></small>
+          </span>
+          </div>
+          <p>{{s.description}}</p>
+        </div>
+        </div>
+      </div>
+    </div> -->
+            <!--  <div class="row mb-50">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <div class="oveflow-hidden rounded-circle">
+                  <img src="{{ data?.user_image }}" width="100%">
+                </div>
+              </div>
+              <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <h6 class="mb-1">{{ data?.user_name }}</h6>
+                <small><i class="fal fa-map-marker-alt"></i> &nbsp; <span>{{ data?.location }}</span></small>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <div class="d-flex align-items-center justify-content-end">
+              <h6 class="mb-0 mr-20">{{data?.phonecode}}{{data?.mobile}}</h6>
+              <a class="btn btn-primary rounded-pill btn-sm" href="#">Call</a>
+            </div>
+          </div>
+          <div class="col-lg-12 mt-30 mb-120">
+            <div class="map" style="height: 220px;">
+           
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <div class="card pl-3 pr-3 pt-2 pb-2 shadow-sm">
+              <small class="mb-1">Booking Type</small>
+              <p class="mb-0 text-dark font-weight-800"><b>Private (Team Size)</b></p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <div class="card pl-3 pr-3 pt-2 pb-2 shadow-sm">
+              <small class="mb-1">Booking Date</small>
+              <p class="mb-0 text-dark font-weight-800"><b>{{ data?.booking_date | date}}</b></p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <div class="card pl-3 pr-3 pt-2 pb-2 shadow-sm">
+              <small class="mb-1">Booking Time</small>
+              <p class="mb-0 text-dark font-weight-800"><b>{{data?.booking_time}}</b></p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <div class="card pl-3 pr-3 pt-2 pb-2 shadow-sm">
+              <small class="mb-1">Booking Hours</small>
+              <p class="mb-0 text-dark font-weight-800"><b>{{ data?.cleaning_duration }} hours</b></p>
+            </div>
+          </div>
+      </div>
+
+    </div> -->
+
+            <div class="col-lg-12 mt-30 mb-120">
+              <div class="map" style="height: 220px;">
+                <div id="map" style="height: 450px"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,85 @@
+<div class="aouth-container lg-container">
+    <app-sidebar></app-sidebar>
+    <div class="container">
+      <div class="main-content">
+        <div class="bonus-packages">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h2>{{'bonusCleaning.heading' | translate}}</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+              <form [formGroup]="activateForm" (ngSubmit)="activeteCode()" >
+              <div class="row form-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <p>{{'bonusCleaning.title' | translate}}</p>
+                  <div class="form-group form-field">
+                    <div class="form-field__control" data-fa-icon="&#xf121;">
+                      <input id="activate" type="text" formControlName="code" class="form-field__input" placeholder=""/>
+                      <label for="activate" class="form-field__label">{{'bonusCleaning.button-activity' | translate}}</label>
+                    </div>
+                    <div *ngIf="activateForm.controls['code'].errors && ( !activateForm.controls['code'].pristine || submitted ||activateForm.controls['code'].touched )" class="error-msg">
+                      <div [hidden]="!activateForm.controls['code'].errors.required">
+                        {{'bonusCleaning.Activate-required' | translate}}
+                      </div>
+                     </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row btn-row mt-20">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <button class="btn btn-primary d-block rounded-pill btn-lg">{{'bonusCleaning.button-activity' | translate}}</button>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-50 packages-cards">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="card shadow-sm mb-25">
+                <div class="card-header bg-primary">
+                  <h6 class="mb-0 text-white">{{'bonusCleaning.remaining-points' | translate}}</h6>
+                </div>
+                <div class="card-body">
+                  <div class="text">
+                    <h1 class="theme-color mb-0">{{UserData?.happy_points}}</h1>
+                    <h6 class="mb-0">{{'bonusCleaning.points' | translate}}</h6>
+                  </div>
+                  <!-- <div class="expiry-tag"><span>Exp: Dec 10</span></div> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="card shadow-sm mb-25">
+                <div class="card-header bg-warning">
+                  <h6 class="mb-0 text-white">{{'bonusCleaning.redeemed-points' | translate}}</h6>
+                </div>
+                <div class="card-body">
+                  <div class="text">
+                    <h1 class="text-warning mb-0">{{UserData?.total_happy_points - UserData?.happy_points}}</h1>
+                    <h6 class="mb-0">{{'bonusCleaning.points' | translate}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="card shadow-sm mb-25">
+                <div class="card-header bg-primary">
+                  <h6 class="mb-0 text-white">{{'bonusCleaning.total-points' | translate}}</h6>
+                </div>
+                <div class="card-body">
+                  <div class="text">
+                    <h1 class="theme-color mb-0">{{UserData?.total_happy_points}}</h1>
+                    <h6 class="mb-0">{{'bonusCleaning.points' | translate}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+      </div>
+    </div>
+  </div>

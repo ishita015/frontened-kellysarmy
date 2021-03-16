@@ -1,0 +1,465 @@
+<div class="aouth-container lg-container service-provider-container">
+   <app-services-side-bar></app-services-side-bar>
+    <div class="container">
+      <form [formGroup]="stepForm">
+        <div class="main-content">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3>Basic Information</h3>
+            </div>
+           
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row form-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+                  <div class="sp-photo-wrap shadow-sm m-0">
+                    <div class="sp-photo-box">
+                      <img src="./assets/images/default-user-image.png">
+                    </div>
+                  </div>
+                   <!-- <input id="upload_documents"  type=file formControlName="image" (change)="onSingleFileChange($event)" 
+                    class="form-field__input mt-3 mb-2" placeholder=""/> -->
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field" id="nameIdInput"> 
+                      <div class="form-field__control" data-fa-icon="&#xf007;">
+                        <input (change)= "func.addFocus()" id="name" type="text" onKeyPress="if(this.value.length == 50) return false;"  formControlName="name" class="form-field__input" placeholder=""/>
+                        <label for="name" class="form-field__label">Name</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['name'].errors && ( !stepForm.controls['name'].pristine || submitted ||stepForm.controls['name'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['name'].errors.required">Name is required.</div>
+                        <div [hidden]="!stepForm.controls.name.hasError('minlength')">Name length should be minimum 2 characters.</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf0e0;">
+                        <input (change)= "func.addFocus()" id="email" type="email" formControlName="email" onKeyPress="if(this.value.length==50) return false;" 
+                        class="form-field__input" placeholder="" disabled/>
+                        <label for="email" class="form-field__label">Email</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['email'].errors && ( !stepForm.controls['email'].pristine || submitted ||stepForm.controls['email'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['email'].errors.required">Email is required.</div>
+                        <div [hidden]="!stepForm.controls['email'].errors.pattern">Invalid email.</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf10b;">
+                        <input (change)= "func.addFocus()" id="mobile" type="text"  onkeypress="if(this.value.length==15) return false;return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 "  
+                        formControlName="mobile" class="form-field__input" placeholder=""/>
+                        <label for="mobile" class="form-field__label">Mobile</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['mobile'].errors && ( !stepForm.controls['mobile'].pristine || submitted ||stepForm.controls['mobile'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['mobile'].errors.required">Mobile No. is required.</div>
+                        <div [hidden]="!stepForm.controls['mobile'].hasError('minlength')">Mobile No. length should be minimum 8 characters.</div>
+                      </div>
+                    </div>
+                </div>
+                <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf023;">
+                        <input (change)= "func.addFocus()"  [type]="showHideBtn ? 'password' : 'text'" onKeyPress="if(this.value.length==8) return false;"  id="password" type="password" 
+                        formControlName="password" class="form-field__input" placeholder=""/>
+                        <label for="password" class="form-field__label">Password</label>
+                        <a href="javascript:void(0);" (click)="showHidePassword()" id="show"><span class="input-icon"
+                            [ngClass]="{'fa': true, 'fa-eye': (!showHideBtn), 'fa-eye-slash': (showHideBtn)}"></span></a>
+                      </div>
+                      <div *ngIf="stepForm.controls['password'].errors && ( !stepForm.controls['password'].pristine || submitted ||stepForm.controls['password'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['password'].errors.required">Password is required.</div>
+                        <div [hidden]="!stepForm.controls['password'].hasError('minlength')">Password length should be minimum 5 characters. </div>
+                      </div>
+                    </div>
+                </div> -->
+              </div>
+            </div>
+          
+          </div>
+          <div class="row mt-20">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3>Service Information</h3>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row form-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                    <!-- <div class="form-field__control" data-fa-icon="&#xf013;"> -->
+                      <!-- <input id="pincode" type="text" (change)="func.addFocus()" onKeyPress="if(this.value.length==8) return false;"  (change)="postCheck()" formControlName="pin_code_id" class="form-field__input" placeholder=""/> -->
+                      <!-- <label for="pincode" class="form-field__label">Service Area</label> -->
+                      <select class="form-control" (change)="onChange($event)" formControlName="pin_code" id="pin_code" name="pin_code">
+                        <option> {{basicInfo?.pin_code}} </option>
+                        <option *ngFor="let pin of postObj" [value]="pin.id">
+                           {{pin?.pin_code}}  
+                        </option>
+                      </select>
+                    <!-- </div> -->
+                  </div>
+                  <div *ngIf="stepForm.controls['pin_code'].errors && ( !stepForm.controls['pin_code'].pristine || submitted ||stepForm.controls['pin_code'].touched )" class="error-msg">
+                    <div [hidden]="!stepForm.controls['pin_code'].errors.required">Service Area is required.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h5>Service Information</h5>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+               
+                  <div class="po-options-grid d-block m-0">
+                    <div class="selectable-box">
+                      <input type="radio"  value="1" 
+                      (click)="individual_type()" class="chk-box" checked ="checked" name="provider_type" id="individual">
+                      <label for="individual">Individual</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <div class="po-options-grid d-block m-0">
+                    <div class="selectable-box">
+                      <input type="radio" class="chk-box" formControlName="provider_type" 
+                      value="2" (click)="public_type()" name="provider_type" id="public">
+                      <label for="public">Public</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <div class="po-options-grid d-block m-0">
+                    <div class="selectable-box">
+                      <input type="radio" class= "chk-box" 
+                      (click)="private_type()" formControlName="provider_type" value="3"  name="provider_type" id="private">
+                      <label for="private">Private</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="TeamSizeHide" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row form-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                    <div class="form-field__control" data-fa-icon="&#xf007;">
+                      <input (change)= "func.addFocus()" id="team_size" type="text"  onkeypress="if(this.value.length==3) return false;return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 " formControlName="team_size" class="form-field__input" placeholder="" />
+                      <label for="team-size" class="form-field__label">Team Size</label>
+                    </div>
+                  </div>
+                  <div *ngIf="team_size_valid && stepForm.controls['team_size'].errors && ( !stepForm.controls['team_size'].pristine || submitted ||stepForm.controls['team_size'].touched )" class="error-msg">
+                    <div [hidden]="!stepForm.controls['team_size'].errors.required">Team Size is required.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h5>Choose Service</h5>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row service-lists-sm">
+                <div *ngFor="let show of img_choose_Obj" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <div  (click)="imgChoose()" class="card d-block shadow-sm rounded mb-20">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center">
+                        <div class="flex-item mr-20">
+                          <img src="{{show.image}}">
+                        </div>
+                        <div class="flex-item">
+                          <h5 class="font-weight-500 mb-0 font-family-karla">{{show.service_name}}</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card d-block shadow-sm rounded mb-20 card-active">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center">
+                        <div class="flex-item mr-20">
+                          <img src="./assets/images/service_deep_cleaning_small.png">
+                        </div>
+                        <div class="flex-item">
+                          <h5 class="font-weight-500 mb-0 font-family-karla">Deep Cleaning</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h5>Additional Services</h5>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row service-lists-sm">
+                <div *ngFor="let additional of img_add_Obj" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card d-block shadow-sm rounded mb-20">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center">
+                        <div class="flex-item mr-20">
+                          <img src="{{additional.image}}">
+                        </div>
+                        <div class="flex-item">
+                          <h5 class="font-weight-500 mb-0 font-family-karla">{{additional.service_name}}</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h5>VAT Number</h5>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                    <div class="form-field__control" data-fa-icon="&#xf3ed;">
+                      <input id="license_number" (change)= "func.addFocus()" onkeypress="if(this.value.length==15) return false;return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 " type="text" 
+                      formControlName="vat_number" class="form-field__input" placeholder=""/>
+                      <label for="license_number" class="form-field__label">VAT Number</label>
+                    </div>
+                  </div>
+                  <div *ngIf="stepForm.controls['vat_number'].errors && ( !stepForm.controls['vat_number'].pristine || submitted ||stepForm.controls['vat_number'].touched )" class="error-msg">
+                    <div [hidden]="!stepForm.controls['vat_number'].errors.required">VAT Number is required.</div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="input-btn-small">
+                        <!-- <a  class="btn btn-outline-primary rounded-pill">Browse</a> -->
+                      </div>
+                      <div class="form-field__control" data-fa-icon="&#xf382;">
+                        <input id="upload_documents" accept=".jpg,.jpeg,.png,.pdf,.doc"  type=file  multiple = "multiple" (change)="onFileChange($event)" 
+                        class="form-field__input mt-3 mb-2" placeholder=""/>
+                        <!-- <label for="upload_documents" class="form-field__label">Upload License Documents</label> -->
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="alert alert-warning" role="alert">
+                    Upload Documents: ID, Criminal Record, Proof of address 1, Proof of address 2
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 license-number">
+                  <div class="row">
+                    <div *ngFor='let show_img of img; let i = index' class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 mb-20">
+                      <div class="card shadow-sm">
+                        <div (click)="closeImage(i)" class="close-icon-thumb"></div>
+                        <img [src]="show_img">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <h5>Rate</h5>
+                </div>
+                <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf3d1;">
+                        <input id="rate" type="text" (change)= "func.addFocus()" formControlName="rate_per_hour" class="form-field__input" placeholder=""/>
+                        <label for="rate" class="form-field__label">Rate per hour (Per member)</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['rate_per_hour'].errors && ( !stepForm.controls['rate_per_hour'].pristine || submitted ||stepForm.controls['rate_per_hour'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['rate_per_hour'].errors.required">Rate Per Hour is required.</div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-20">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3>Availability</h3>
+            </div>
+            <div  class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="df-item">
+                        <div class="day-name">Monday</div>
+                      </div>
+                      <div  class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" id="monday_start"  class="form-control form-control-sm" 
+                              formControlName="monday_start">
+                              <ejs-timepicker placeholder='Select a time' ></ejs-timepicker>
+                            </div>
+                          </div>
+                         
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" id="monday_end" class="form-control form-control-sm" 
+                              formControlName="monday_end">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="df-item">
+                        <div class="day-name">Tuesday</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm"
+                              formControlName="tuesday_start">
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm" 
+                               formControlName="tuesday_end">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="df-item">
+                        <div class="day-name">Wednesday</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm" 
+                              formControlName="wednesday_start">
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm"  
+                              formControlName="wednesday_end">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="df-item">
+                        <div class="day-name">Thursday</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm" 
+                              formControlName="thusday_start">
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm"
+                              formControlName="thusday_end">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="df-item">
+                        <div class="day-name">Friday</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm" 
+                              formControlName="friday_start">
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm"
+                              formControlName="friday_end">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="df-item">
+                        <div class="day-name">Saturday</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm" 
+                              formControlName="saturday_start">
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm"
+                              formControlName="saturday_end">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="df-item">
+                        <div class="day-name">Sunday</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm" 
+                              formControlName="sunday_start">
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <input type="time" class="form-control form-control-sm"
+                              formControlName="sunday_end">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center mt-30">
+                  <button class="btn btn-primary rounded-pill btn-lg" (click)="submitForm3()"  style="min-width: 150px;">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+    
+        </div>
+      </form>
+      </div>
+</div>

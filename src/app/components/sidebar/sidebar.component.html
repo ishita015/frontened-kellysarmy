@@ -1,0 +1,36 @@
+<div class="sidebar-wrapper" >
+    <div class="sidebar-inner">
+      <div class="toggle-mobile"></div>
+      <div class="user-info">
+        <div class="user-photo">
+          <div class="user-photo-inner">
+            <span>
+              <img src="{{profileData?.image}}">
+            </span>
+          </div>
+        </div>
+        <h5 class="user-name text-white">{{profileData?.name}}</h5>
+        <div class="btn btn-warning rounded-pill d-block mb-10"><span class="fas fa-dice-five"></span> {{happy_point}} Happy Point</div>
+        <!-- <h6 class="text-white mb-0">eduardo4595</h6> -->
+      </div>
+      <div class="user-navs">
+        <ul class="list-inline">
+          <!-- <li ><a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf015;">Membership Information</a></li> -->
+          <li><a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf007;">{{'sidebar.my-profile' | translate}}</a></li>
+          <li><a routerLink="/my-service"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf562;">{{'sidebar.my-service' | translate}}</a></li>
+          <li><a routerLink="/myteam" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf0c0;">{{'sidebar.my-team' | translate}}</a></li>
+          <li><a routerLink="/myaddress" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf3c5;">{{'sidebar.my-addresses' | translate}}</a></li>
+          <li><a  routerLink="/service-setting" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf013;">{{'sidebar.settings' | translate}}</a></li>
+          <!-- <li><a routerLink="/payment-option" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf53d;">Payment Options</a></li> -->
+          <li><a routerLink="/invite-friend" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf069;">{{'sidebar.invite-friend' | translate}}</a></li>
+          <li><a routerLink="/still-question" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf128;">{{'sidebar.still-questions' | translate}}</a></li>
+          <li><a routerLink="/bonus-cleaning" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf49e;">{{'sidebar.bonus-cleaning' | translate}}</a></li>
+          <li><a routerLink="/change-password" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf3c1;">{{'sidebar.Change-password' | translate}}</a></li>
+          <li><a routerLink="/delete-account" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf1f8;">{{'sidebar.Delete-Account' | translate}}</a></li>
+          <li style="cursor: pointer;"><a (click)="Logout()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf2f5;">{{'sidebar.Log-out' | translate}}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  

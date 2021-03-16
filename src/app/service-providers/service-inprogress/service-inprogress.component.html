@@ -1,0 +1,204 @@
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+<div class="aouth-container lg-container service-provider-container">
+    <app-services-side-bar></app-services-side-bar>
+   <!--  <div class="btn-group">
+      <button type="button" class="btn btn-primary" (click)="useLanguage('pt')"> {{'home.button.pt' | translate}}  </button>
+      <button type="button" class="btn btn-primary" (click)="useLanguage('en')">  {{'home.button.en' | translate}}  </button>
+    </div> -->
+    <div class="container">
+        <div class="main-content">
+          <div class="row services-listing-lg">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3>{{'service-progress.in-progress' | translate}}</h3>
+            </div>
+           <!--  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="sc-wrapper mb-25">
+                <div class="sc-button-wrapper">
+                  <ul class="list-inline d-flex align-items-center mb-20 justify-content-end">
+                    <li class="mr-10"><a href="" class="btn btn-warning btn-sm rounded-pill">Pending</a></li>
+                  </ul>
+                </div>
+                <div class="card shadow-sm rounded service-card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sc-content">
+                          <div class="sc-image">
+                            <span><img src="./assets/images/service_domestic_cleaning.png"></span>
+                          </div>
+                          <h5 class="mb-2">Domestic Cleaning</h5>
+                          <p>Enriched Academy is the quick and easy way for anyone to learn key concepts around saving and investing their money.</p>
+                          <div class="d-flex align-items-center sc-price">
+                            <h2 class="mb-0 theme-color mr-20">$29.9</h2>
+                            <h5 class="mb-0 theme-color">6 hours</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="card-secondry">
+                              <span class="d-block">Booking Date</span>
+                              <h6>Oct 22, 2020</h6>
+                            </div>
+                            <div class="card-secondry">
+                              <span class="d-block">Booking Time</span>
+                              <h6>10:00 AM</h6>
+                            </div>
+                          </div>
+                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="card-secondry user-info-box">
+                              <div class="text-center">
+                                <div class="user-photo">
+                                  <span><img src="./assets/images/testimonial-img-1.png"></span>
+                                </div>
+                                <h6>John Doe</h6>
+                                <div class="sc-location">
+                                  <span class="fal fa-map-marker-alt"></span>
+                                  <span>Vancover, CA</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <div style="margin-top: 7%;z-index: 999;" id="myModal" class="modal">
+
+              <!-- Modal content -->
+              <div class="modal-content" style="    width: 57%; margin-top: 7%; margin-left: 25%; ">
+                <span id="closeSectionId" (click)="closeRatingPopup()" class="close">&times;</span>
+                <h4>{{'service-progress.select-rating' | translate}}</h4>
+                 <ul class="list-inline rating-list" style="display: inline-block !important;">
+                          <li (click)="countStar(star)"
+                              [ngClass]="{'selected': (star <= selectedValue)}" *ngFor="let star of stars" style="float:left;">
+                            <i class="fa fa-star"></i>
+                          </li> 
+                    </ul>
+                    <textarea placeholder="{{'service-progress.enter-reviews' | translate}}" id="review_id" class="form-control"></textarea>
+                    <button  (click)="finalComplete()" class="btn btn-primary rounded-pill mt-20" style="display: block;max-width: 220px;">{{'service-progress.submit' | translate}}</button>
+              </div>
+
+            </div>
+           <div *ngFor="let s of RequestData" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div  class="sc-wrapper mb-25">
+            <div class="sc-button-wrapper">
+              <ul class="list-inline d-flex align-items-center mb-20 justify-content-end">
+                    <li *ngIf="s.progress_status == 1" class="mr-10"><a class="btn btn-primary rounded-pill" (click)="markAsCompleted(s)">{{'service-progress.mark-complete' | translate}}</a></li>
+                    <li *ngIf="s.progress_status == 2" class="mr-10"><a class="btn btn-primary rounded-pill" >{{'service-progress.waiting' | translate}}</a></li>
+                    <li *ngIf="s.progress_status == 3" class="mr-10"><a class="btn btn-primary rounded-pill" >{{'service-progress.completed' | translate}}</a></li>
+              </ul>
+            </div>
+            <div class="card shadow-sm rounded service-card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                    <div class="sc-content">
+                      <div class="sc-image">
+                        <span><img src="{{s.service_image}}"></span>
+                      </div>
+                      <h5 style="cursor: pointer;" (click)="serviceDetails(s)" class="mb-2">{{s.service_name}}</h5>
+                      <p>{{s.services_description}}</p>
+                      <div class="d-flex align-items-center sc-price">
+                        <h2 class="mb-0 theme-color mr-20">€{{s.service_book_amount}}</h2>
+                        <h5 class="mb-0 theme-color">{{s.cleaning_duration}} {{'service-progress.hours' | translate}}</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card-secondry">
+                          <span class="d-block">{{'service-progress.booking-date' | translate}}</span>
+                          <h6>{{s.booking_date | date }}</h6>
+                        </div>
+                        <div class="card-secondry">
+                          <span class="d-block">{{'service-progress.booking-time' | translate}}</span>
+                          <h6>{{s.booking_time}}</h6>
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card-secondry user-info-box">
+                          <div class="text-center">
+                            <div class="user-photo">
+                              <span><img src="{{s.user_image}}"></span>
+                            </div>
+                            <h6>{{s.user_name}}</h6>
+                            <div class="sc-location">
+                              <span class="fal fa-map-marker-alt"></span>
+                              <span>{{s.location}}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+           </div>
+           <div *ngIf="RequestData.length == 0" class="row mt-80">
+          <div  class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mainbox">
+     
+            <div class="boxblock">
+             <i class="fas fa-frown-open"></i>
+             </div>
+              <p class="mt-20 mb-20">{{'service-progress.not-matches' | translate}}<br> {{'service-progress.please-try' | translate}}</p> </div>
+            </div>
+       <!--  <div *ngIf="RequestData.length == 0">
+          No service found
+        </div> -->
+    
+       
+         
+    
+        </div>
+      </div>
+</div>

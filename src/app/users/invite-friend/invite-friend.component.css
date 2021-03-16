@@ -1,0 +1,40 @@
+.btn.btn-primary {
+    border-width: 2px;
+    width: 100%;
+    height: 44px;
+    line-height: 23px;
+}
+
+/*.form_sel select{
+	appearance: auto;
+}*/
+.email_block .form-field__control{width: 99% !important;}
+.reference-code .btn-primary{
+   position: sticky;
+        bottom: 100%;
+    width: 20% !important;
+    left: 100%;
+}
+@media screen and (min-width: 1400px) {
+.reference-code .btn-primary{
+position: sticky;
+        bottom: 100%;
+    width: 20% !important;
+      left: 100%;
+}
+}
+.bonus-packages .sharing-options .sharing-box {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 16px 20px;
+    border-radius: 2000px;
+    color: #464646;
+    font-weight: 600;
+    user-select: none;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+.sharing-box span {
+    display: inline-block;
+    font-size: 15px;
+}

@@ -1,0 +1,760 @@
+<style type="text/css">
+  .marginTop {
+    min-height: 200px !important;
+  }
+</style>
+<div class="slider-area--home">
+  <div class="container caption pt-130 pb-130">
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+        <div class="content-wrap">
+          <h1 class="text-center">{{'home.heading' | translate }}</h1>
+          <!-- <div class="search-wrapper shadow-sm mt-4">
+              <span class="fal fa-map-marker-alt icon"></span> -->
+          <!-- <input id="postcodeId" #search  autocomplete="off" value="{{locationn}}" type="text" class="form-control form-control-lg" placeholder="Enter your location"> -->
+          <!-- <input id="postcodeId" #search  autocomplete="off" value="{{locationn}}" type="text" class="form-control form-control-lg" placeholder="Enter your location"> -->
+          <!--   <select id="postcodeId"  class="form-control form-control-lg" [(ngModel)]="locationn"  placeholder="Select your location">
+                <option value="" disabled="" selected="">Select location</option>
+                <option  *ngFor="let s_loc of userAddressData" value="{{s_loc.id}}" >{{s_loc.address_title}}</option>
+              </select>
+              <input (click)="scroll(target)" type="submit" name="" class="btn btn-primary" value="BOOK NOW">
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="image-bg" style="background-image: url('./assets/images/ffbc7970d37e9c5b15704de5ad1297a9.jpg');"></div>
+</div>
+<style type="text/css">
+
+</style>
+
+
+<div id="devaIDss" class="service-area mt-90  pb-70 pt-md-50 pb-md-50 pt-xs-50 pb-xs-30">
+  <div class="{{checkAddClass == 1 ? 'marginTop': ''}}" id="main_scoll_id_book"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <h6 class="text-muted font-weight-400 text-center">{{'home.sub-heading1' | translate }}</h6>
+        <h1 class="text-center">{{'home.sub-heading2' | translate }}</h1>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-40">
+
+      <div *ngIf="userId == null" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div routerLink="/login" class="service-box text-center">
+          <div class="service-image mb-30">
+            <span><img src="./assets/images/domestinc-cleaning.png"></span>
+          </div>
+          <h4 class="mb-1">{{'home.image-sub-heading1' | translate }}</h4>
+          <p>{{'home.image-sub-title1' | translate }}</p>
+          <a class="btn btn-outline-secondary rounded-pill">{{'home.image-sub-button1' | translate }}</a>
+        </div>
+      </div>
+
+      <div *ngIf="userId != null" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div routerLink="/domestic-cleaning/{{lat}}/{{lng}}/{{locationn}}" class="service-box text-center">
+          <div class="service-image mb-30">
+            <span><img src="./assets/images/domestinc-cleaning.png"></span>
+          </div>
+          <h4 class="mb-1">{{'home.image-sub-heading1' | translate }}</h4>
+          <p>{{'home.image-sub-title1' | translate }}</p>
+          <a class="btn btn-outline-secondary rounded-pill">{{'home.image-sub-button1' | translate }}</a>
+        </div>
+      </div>
+
+
+      <!--  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+          <div class="service-box text-center">
+            <div class="service-image mb-30">
+              <span><img src="./assets/images/tenancy-cleaning.png"></span>
+            </div>
+            <h4 class="mb-1">Tenancy Cleaning</h4>
+            <p>and it's. getting chaotic</p>
+            <a href="" class="btn btn-outline-secondary rounded-pill">Let's get started</a>
+          </div>
+        </div> -->
+      <div *ngIf="userId != null" routerLink="/deep-cleaning/{{lat}}/{{lng}}/{{locationn}}"
+        class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="service-box text-center">
+          <div class="service-image mb-30">
+            <span><img src="./assets/images/deel-cleaning.png"></span>
+          </div>
+          <h4 class="mb-1">{{'home.image-sub-heading2' | translate }}</h4>
+          <p>{{'home.image-sub-title2' | translate }}</p>
+          <a class="btn btn-outline-secondary rounded-pill"> {{'home.image-sub-button2' | translate }}</a>
+        </div>
+      </div>
+      <div *ngIf="userId == null" routerLink="/login" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="service-box text-center">
+          <div class="service-image mb-30">
+            <span><img src="./assets/images/deel-cleaning.png"></span>
+          </div>
+          <h4 class="mb-1">{{'home.image-sub-heading2' | translate }}</h4>
+          <p>{{'home.image-sub-title2' | translate }}</p>
+          <a class="btn btn-outline-secondary rounded-pill">{{'home.image-sub-button2' | translate }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<<!-- div class="insurance-area mt-70 mb-70 mt-md-50 mb-md-70 mt-xs-30 mb-xs-40">
+  <div class="row no-gutters">
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <div class="insurance-box left pt-120 pb-120 pl-130 pr-130">
+        <div class="content-box">
+          <h6 class="font-weight-300 text-white">Your home is covered by</h6>
+          <h1 class="text-white mb-4">Axa Insurance up to £150,000!</h1>
+          <p>Our priority is to give you peace of mind. Axa Insurance provides cover for unlikely events. In the
+            unlikely event of damages during the cleaning service, we have you covered up to £150,000.</p>
+          <ul class="list-inline links">
+            <li><a href="">Learn more ⟶</a></li>
+            <li><a href="">Damage & Loss Management Process ⟶</a></li>
+          </ul>
+        </div>
+        <div class="icons-bg" style="background-image: url('images/pattern-bg.png')"></div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <div class="insurance-box right">
+        <div class="insurance-image"><img src="./assets/images/axa-uk.png"></div>
+        <div class="image-box">
+          <img src="./assets/images/insurance-image.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div> -->
+
+  <div class="why-choose-area pt-70 pb-70 pt-md-30 pb-md-30 pt-xs-30 pb-xs-30">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 order-xl-2 order-lg-2">
+          <div class="key-points">
+            <ul class="list-inline">
+              <li>
+                <div class="kp-box">
+                  <div class="kp-icon"><img src="./assets/images/trusted_cleaning_professionals.png"></div>
+                  <div class="kp-content">
+                    <h3>{{'home.image-side-right-heading2' | translate }}</h3>
+                    <p>{{'home.image-side-right-title1' | translate }}</p>
+                    <!-- <a href="">Read more ⟶</a> -->
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="kp-box">
+                  <div class="kp-icon"><img src="./assets/images/pease_of-mind.png"></div>
+                  <div class="kp-content">
+                    <h3>{{'home.image-side-right-heading2' | translate }}</h3>
+                    <p>{{'home.image-side-right-title2' | translate }}</p>
+                    <!-- <a href="">Read more ⟶</a> -->
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="kp-box">
+                  <div class="kp-icon"><img src="./assets/images/happiness_policy.png"></div>
+                  <div class="kp-content">
+                    <h3>{{'home.image-side-right-heading3' | translate }}</h3>
+                    <p>{{'home.image-side-right-title3' | translate }}</p>
+                    <!-- <a href="">Read more ⟶</a> -->
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 order-xl-1 order-lg-1">
+          <div class="image-wrapper">
+            <div class="section--title">
+              <h2>{{'home.image-side-left1' | translate }}</h2>
+            </div>
+            <div class="image-large">
+              <img src="./assets/images/why-choose-img-1.png">
+            </div>
+            <div class="image-small">
+              <img src="./assets/images/why-choose-img-2.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hr-container">
+    <div class="container">
+      <hr>
+    </div>
+  </div>
+
+  <div class="key-functions-area pt-50 pb-70 pt-md-30 pb-md-30 pt-xs-30 pb-xs-30">
+    <div class="container">
+      <div class="row row-1">
+        <div class="col-xl-6 col-lg-6 col-sm-12 col-xs-12">
+          <div class="image-wrapper">
+            <div class="img">
+              <img src="./assets/images/function-img-1.png">
+            </div>
+            <div class="dotted-image">
+              <img src="./assets/images/dotted-img.png">
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-sm-12 col-xs-12">
+          <div class="kf-content">
+            <h1>{{'home.image-side-right-heading4' | translate }}</h1>
+            <p class="mb-4">{{'home.image-side-right-title4' | translate }}</p>
+            <!-- <a href="" class="btn btn-primary rounded-pill">View Details</a> -->
+          </div>
+        </div>
+      </div>
+      <div class="row row-2">
+        <div class="col-xl-6 col-lg-6 col-sm-12 col-xs-12">
+          <div class="image-wrapper">
+            <div class="img">
+              <img src="./assets/images/function-img-2.png">
+            </div>
+            <div class="dotted-image">
+              <img src="./assets/images/dotted-img.png">
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-sm-12 col-xs-12">
+          <div class="kf-content">
+            <h1>{{'home.image-side-left-heading5' | translate }}</h1>
+            <p class="mb-4">{{'home.image-side-left-title5' | translate }}</p>
+            <a *ngIf="user_type == '1' && userId != null" routerLink="/invite-friend"
+              class="btn btn-primary rounded-pill">{{'home.image-sub-button5' | translate }}</a>
+            <!-- <a *ngIf="user_type == '2' && userId != null" routerLink="/service-providers/invite-friend" class="btn btn-primary rounded-pill">Refer & Earn</a> -->
+            <a *ngIf="userId == null" routerLink="/login"
+              class="btn btn-primary rounded-pill">{{'home.image-sub-button5' | translate }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="testimonials-wrapper pt-80 pb-80 pt-md-60 pb-md-60 pt-xs-40 pb-md-40">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+          <div class="section-heading text-center mb-30">
+            <h2 class="mb-15">{{'home.image-slider-heading' | translate }}</h2>
+            <p>{{'home.image-slider-title' | translate }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="testimonial-swiper">
+            <owl-carousel-o [options]="customOptions">
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      {{'home.image-slider-contain' | translate }} </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-1.png');"></div>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      {{'home.image-slider-contain' | translate }}
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-2.png');"></div>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      {{'home.image-slider-contain' | translate }}
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-3.png');"></div>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      {{'home.image-slider-contain' | translate }}
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-3.png');"></div>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      {{'home.image-slider-contain' | translate }}
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-2.png');"></div>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      {{'home.image-slider-contain' | translate }}
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-1.png');"></div>
+                </div>
+              </ng-template>
+              <!-- <ng-template carouselSlide><img src="./assets/images/testimonial-thumb-2.png"></ng-template>   -->
+              <!-- <ng-template carouselSlide><img src="./assets/images/testimonial-thumb-3.png"></ng-template>  -->
+              <!-- <ng-template carouselSlide><img src="./assets/images/testimonial-thumb-2.png"></ng-template>   -->
+              <!-- <ng-template carouselSlide><img src="./assets/images/testimonial-thumb-1.png"></ng-template>   -->
+
+            </owl-carousel-o>
+
+          </div>
+          <!-- <div class="testimonial-swiper">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      Since Cleanzy has come in to my life, I feel like I can achieve my goals. I love cooking, one day I’d love to open a bakery combine. my passion and my job. It’s such a great feeling to be able to put my dreams into my work. Cleanzy made it possible for me to dream.
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Ava</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-1.png');"></div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      I’m very proud to be a part of the Cleanzy family. I feel free and happy now that I get to choose and organize my working schedule. Everyday I wake up excited and motivated to go to my job. Thank you Cleanzy for giving me the opportunity to do so!
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-2.png');"></div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      Since Cleanzy has come in to my life, I feel like I can achieve my goals. I love cooking, one day I’d love to open a bakery.
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Lida</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-3.png');"></div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      I’m very proud to be a part of the Cleanzy family. I feel free and happy now that I get to choose and organize my working schedule. Everyday I wake up excited and motivated to go to my job. Thank you Cleanzy for giving me the opportunity to do so!
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-2.png');"></div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      Since Cleanzy has come in to my life, I feel like I can achieve my goals. I love cooking, one day I’d love to open a bakery combine. my passion and my job. It’s such a great feeling to be able to put my dreams into my work. Cleanzy made it possible for me to dream.
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Ava</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-1.png');"></div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      Since Cleanzy has come in to my life, I feel like I can achieve my goals. I love cooking, one day I’d love to open a bakery.
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Lida</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-3.png');"></div>
+                </div>
+              </div>
+            </div>
+         
+            <div class="swiper-pagination testimonial-pagination"></div>
+          </div>
+        </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="testimonials-area pt-70 pb-70 pt-md-60 pb-md-30 pt-xs-60 pb-xs-30 mt-70 mt-md-50">
+    <div class="container">
+      <div class="row align-items-center"> -->
+  <!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+          <div class="testi-box">
+            <h1>Kelly's Army Professionals</h1>
+            <p class="mb-35">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <a  routerLink="member/step1" class="btn btn-primary rounded-pill">Become a member</a>
+          </div>
+        </div> -->
+  <!-- <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+          <div class="testimonial-slider testi-box">
+            <div class="swiper-container"> -->
+  <!-- <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="swiper-item">
+                    <p>I’m very proud to be working with Kelly's Army. I moved to the city recently, and got to know the city and my surroundings whilst working. I’m making the most of it thanks to Kelly's Army.</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="flexitem">
+                        <h5>Ava</h5>
+                        <div class="stars">
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                        </div>
+                      </div>
+                      <div class="flexitem">
+                        <img src="./assets/images/testimonial-img-1.png" class="rounded-circle">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="swiper-item">
+                    <p>I’m very proud to be working with Kelly's Army. I moved to the city recently, and got to know the city and my surroundings whilst working. I’m making the most of it thanks to Kelly's Army.</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="flexitem">
+                        <h5>Ava</h5>
+                        <div class="stars">
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                        </div>
+                      </div>
+                      <div class="flexitem">
+                        <img src="images/testimonial-img-1.png" class="rounded-circle">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="swiper-item">
+                    <p>I’m very proud to be working with Kelly's Army. I moved to the city recently, and got to know the city and my surroundings whilst working. I’m making the most of it thanks to Kelly's Army.</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="flexitem">
+                        <h5>Ava</h5>
+                        <div class="stars">
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                        </div>
+                      </div>
+                      <div class="flexitem">
+                        <img src="./assets/images/testimonial-img-1.png" class="rounded-circle">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="swiper-item">
+                    <p>I’m very proud to be working with Kelly's Army. I moved to the city recently, and got to know the city and my surroundings whilst working. I’m making the most of it thanks to Kelly's Army.</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="flexitem">
+                        <h5>Ava</h5>
+                        <div class="stars">
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                        </div>
+                      </div>
+                      <div class="flexitem">
+                        <img src="./assets/images/testimonial-img-1.png" class="rounded-circle">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              Add Arrows -->
+
+
+  <!-- 
+              <div class="testimonials-wrapper mt-80 pb-80 pt-md-60 pb-md-60 pt-xs-40 pb-md-40">
+  <div class="container"> -->
+  <!--   <div class="row justify-content-center">
+      <div class="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+        <div class="section-heading text-center mb-30">
+          <h2 class="mb-15">See what our customers have to say about us</h2>
+          <p>Kelly's Army is the quick and easy way for anyone to learn key concepts around saving and investing their money.</p>
+        </div>
+      </div>
+    </div> -->
+  <!-- <div class="row">
+      <style type="text/css">
+
+      </style> -->
+  <!--      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="testimonial-swiper">
+          <owl-carousel-o [options]="customOptions">
+            <ng-template class="newdiv" carouselSlide>
+              <div class="testi-box" data-overlay>
+                <div class="tb-inner">
+                  <div class="swiper-slide">
+                  <div class="swiper-item">
+                    <p>I’m very proud to be working with Kelly's Army. I moved to the city recently, and got to know the city and my surroundings whilst working. I’m making the most of it thanks to Kelly's Army.</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="flexitem">
+                        <h5>Ava</h5>
+                        <div class="stars">
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                        </div>
+                      </div>
+                      <div class="flexitem">
+                        <img src="./assets/images/testimonial-img-1.png" class="rounded-circle">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               </div>
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="testi-box" data-overlay>
+                <div class="tb-inner">
+                  <div class="swiper-slide">
+                  <div class="swiper-item">
+                    <p>I’m very proud to be working with Kelly's Army. I moved to the city recently, and got to know the city and my surroundings whilst working. I’m making the most of it thanks to Kelly's Army.</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="flexitem">
+                        <h5>Ava</h5>
+                        <div class="stars">
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                        </div>
+                      </div>
+                      <div class="flexitem">
+                        <img src="./assets/images/testimonial-img-1.png" class="rounded-circle">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               </div>
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="testi-box" data-overlay>
+                <div class="tb-inner">
+                  <div class="swiper-slide">
+                  <div class="swiper-item">
+                    <p>I’m very proud to be working with Kelly's Army. I moved to the city recently, and got to know the city and my surroundings whilst working. I’m making the most of it thanks to Kelly's Army.</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="flexitem">
+                        <h5>Ava</h5>
+                        <div class="stars">
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                        </div>
+                      </div>
+                      <div class="flexitem">
+                        <img src="./assets/images/testimonial-img-1.png" class="rounded-circle">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               </div>
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="testi-box" data-overlay>
+                <div class="tb-inner">
+                  <div class="swiper-slide">
+                  <div class="swiper-item">
+                    <p>I’m very proud to be working with Kelly's Army. I moved to the city recently, and got to know the city and my surroundings whilst working. I’m making the most of it thanks to Kelly's Army.</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="flexitem">
+                        <h5>Ava</h5>
+                        <div class="stars">
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                          <span class="fas fa-star"></span>
+                        </div>
+                      </div>
+                      <div class="flexitem">
+                        <img src="./assets/images/testimonial-img-1.png" class="rounded-circle">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               </div>
+              </div>
+            </ng-template>
+          </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            </div> -->
+
+  <!-- <div class="slider-navigations">
+              <div class="testi_swiper_nav_prev">⟵</div>
+              <div class="testi_swiper_nav_next">⟶</div>
+            </div> -->
+  <!--      </div>
+        </div>
+      </div>
+    </div>
+  </div> -->

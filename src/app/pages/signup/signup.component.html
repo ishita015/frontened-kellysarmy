@@ -1,0 +1,416 @@
+<div class="lg-container-v2">
+    <div class="lg-contents-v2">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+            <div class="lg-graphic-v2">
+              <span><img class="sticky" src="./assets/images/login-graphic2.png"></span>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+            <div class="lg-box-main">
+              <div class="lg-box-inner">
+                <h4 class="text-center">{{'customer-registration.heading1' | translate}}</h4>
+                <div class="row">
+                  <form [formGroup]="signupForm">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group form--group">
+                      <label>{{'customer-registration.form-name' | translate}}</label>
+                      <input type="text" placeholder="{{'customer-registration.name-placeholder' | translate}}" onKeyPress="if(this.value.length == 50) return false;" formControlName="name" class="form-control">
+                      <span class="fal fa-user input-icon"></span>
+                    </div>
+                    <div *ngIf="signupForm.controls['name'].errors && ( !signupForm.controls['name'].pristine || submitted ||signupForm.controls['name'].touched )" class="error-msg">
+                      <div [hidden]="!signupForm.controls['name'].errors.required">{{'customer-registration.name-is-required' | translate}}</div>
+                      <div [hidden]="!signupForm.controls.name.hasError('minlength')">{{'customer-registration.minimum-name' | translate}}</div>
+                    </div>
+                  </div>
+
+                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group form--group">
+                      <label>{{'customer-registration.form-code' | translate}}</label>
+                      <input type="text" placeholder="{{'customer-registration.reffer-code-placeholder' | translate}}"  formControlName="reffer_by_code" class="form-control">
+                      <span class="fal fa-code input-icon"></span>
+                    </div>
+                   
+                  </div>
+
+
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group form--group">
+                      <label>{{'customer-registration.form-email' | translate}}</label>
+                      <input type="email" placeholder="{{'customer-registration.email-placeholder' | translate}}" onkeypress="if(this.value.length==50) return false" formControlName="email" class="form-control">
+                      <span class="fal fa-envelope input-icon"></span>
+                    </div>
+                    <div *ngIf="signupForm.controls['email'].errors && ( !signupForm.controls['email'].pristine || submitted ||signupForm.controls['email'].touched )" class="error-msg">
+                      <div [hidden]="!signupForm.controls['email'].errors.required">{{'login.email-is-required' | translate}}</div>
+                      <div [hidden]="!signupForm.controls['email'].errors.pattern">{{'login.invalid-email' | translate}}</div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group form--group">
+                      <label>{{'customer-registration.form-password' | translate}}</label>
+                      <input [type]="showHideBtn ? 'password' : 'text'" type="password" onKeyPress="if(this.value.length==8) return false;"  placeholder="{{'login.pass-placeholder' | translate}}" formControlName="password" class="form-control">
+                      <a href="javascript:void(0);" (click)="showHidePassword()" id="show"><span class="input-icon"
+                        [ngClass]="{'fa': true, 'fa-eye': (!showHideBtn), 'fa-eye-slash': (showHideBtn)}"></span></a>
+                    </div>
+                    <div *ngIf="signupForm.controls['password'].errors && ( !signupForm.controls['password'].pristine || submitted ||signupForm.controls['password'].touched )" class="error-msg">
+                      <div [hidden]="!signupForm.controls['password'].errors.required">{{'login.Password-is-required' | translate}}</div>
+                      <div [hidden]="!signupForm.controls['password'].hasError('minlength')">{{'login.minimum' | translate}}</div>
+                    </div>
+                  </div>
+
+<!-- <<<<<<< HEAD
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      
+======= -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 select_sign">
+<!-- >>>>>>> master -->
+                    <div class="form-group form--group">
+                      <label>{{'customer-registration.form-country-code' | translate}}</label>
+                      <select formControlName="phonecode" class="form-control">
+                        <option *ngFor="let phonec of phoneCodeData;" value="{{phonec.phonecode}}">{{phonec.nicename}}  +{{phonec.phonecode}}  </option>
+                      </select>
+                    </div>
+<!-- <<<<<<< HEAD -->
+                      <!-- <span class="fal fa-phone input-icon"></span> -->
+<!-- ======= -->
+                     <!--  <span class="fal fa-phone input-icon"></span> -->
+<!-- >>>>>>> master -->
+                    <div *ngIf="signupForm.controls['phonecode'].errors && ( !signupForm.controls['phonecode'].pristine || submitted ||signupForm.controls['phonecode'].touched )" class="error-msg">
+                      <div [hidden]="!signupForm.controls['phonecode'].errors.required">{{'customer-registration.Country-required' | translate}}</div>
+                     
+                    </div>
+                  </div>
+
+
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group form--group">
+                      <label>{{'customer-registration.form-phone' | translate}}</label>
+                      <input type="text" onkeypress="if(this.value.length==15) return false;return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 "  placeholder=" 7123456789" formControlName="mobile" class="form-control">
+                      <span class="fal fa-phone input-icon"></span>
+                    </div>
+                    <div *ngIf="signupForm.controls['mobile'].errors && ( !signupForm.controls['mobile'].pristine || submitted ||signupForm.controls['mobile'].touched )" class="error-msg">
+                      <div [hidden]="!signupForm.controls['mobile'].errors.required">{{'customer-registration.Mobile-required' | translate}}</div>
+                      <div [hidden]="!signupForm.controls['mobile'].hasError('minlength')">{{'customer-registration.length-mob' | translate}}</div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="terms-box mt-20">
+                      <input type="checkbox" name="privacy_policy" formControlName="agree" id="privacy_policy" class="chk-box" required>
+                      <label for="privacy_policy">{{'customer-registration.form-policy' | translate}} <a href="">{{'customer-registration.form-privacy' | translate}}</a>.</label>
+                    </div>
+                    <div *ngIf="signupForm.controls['agree'].errors && ( !signupForm.controls['agree'].pristine || submitted ||signupForm.controls['agree'].touched )" class="error-msg">
+                      <div [hidden]="!signupForm.controls['agree'].errors.required">{{'customer-registration.Policy-required' | translate}}</div>
+                    </div>
+                   
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="terms-box mt-20">
+                      <input type="checkbox" name="terms" id="terms" class="chk-box">
+                      <label for="terms">{{'customer-registration.form-accept' | translate}}</label>
+                    </div>
+                  </div>
+                  </form>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group form--group mt-20">
+                      <input type="button" (click)="signup()" value="Sign Up" class="btn btn-primary rounded-pill d-block w-100" required>
+                    </div>
+                    <div class="signin">
+                      <span>{{'customer-registration.account' | translate}}</span><a routerLink="/login" value="login"> {{'customer-registration.signin' | translate}} </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonials-wrapper pt-80 pb-80 pt-md-60 pb-md-60 pt-xs-40 pb-md-40">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+          <div class="section-heading text-center mb-30">
+            <h2 class="mb-15">{{'login.heading' | translate}}</h2>
+            <p>{{'login.sub-title' | translate}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="testimonial-swiper">
+            <owl-carousel-o [options]="customOptions">
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                    {{'login.image-slider-heading' | translate}}
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-1.png');"></div>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      {{'login.image-slider-heading' | translate}}
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-2.png');"></div>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      {{'login.image-slider-heading' | translate}}
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-3.png');"></div>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      {{'login.image-slider-heading' | translate}}
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-3.png');"></div>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      {{'login.image-slider-heading' | translate}}
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-2.png');"></div>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="testi-box" data-overlay>
+                  <div class="tb-inner">
+                    <div class="stars">
+                      <span class="fas fa-star"></span>
+                      <span class="fas fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                      <span class="fal fa-star"></span>
+                    </div>
+                    <div class="testi-content">
+                      {{'login.image-slider-heading' | translate}}
+                    </div>
+                    <div class="testi-border">
+                      <img src="./assets/images/testi-box-arrow.png">
+                    </div>
+                    <div class="testi-name">Maria</div>
+                  </div>
+                  <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-1.png');"></div>
+                </div>
+              </ng-template>
+              <!-- <ng-template carouselSlide><img src="./assets/images/testimonial-thumb-2.png"></ng-template>   -->
+              <!-- <ng-template carouselSlide><img src="./assets/images/testimonial-thumb-3.png"></ng-template>  -->
+              <!-- <ng-template carouselSlide><img src="./assets/images/testimonial-thumb-2.png"></ng-template>   -->
+              <!-- <ng-template carouselSlide><img src="./assets/images/testimonial-thumb-1.png"></ng-template>   -->
+              
+            </owl-carousel-o>
+  
+          </div>
+          <!-- <div class="testimonial-swiper">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="testi-box" data-overlay>
+                    <div class="tb-inner">
+                      <div class="stars">
+                        <span class="fas fa-star"></span>
+                        <span class="fas fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                      </div>
+                      <div class="testi-content">
+                        Since Cleanzy has come in to my life, I feel like I can achieve my goals. I love cooking, one day I’d love to open a bakery combine. my passion and my job. It’s such a great feeling to be able to put my dreams into my work. Cleanzy made it possible for me to dream.
+                      </div>
+                      <div class="testi-border">
+                        <img src="./assets/images/testi-box-arrow.png">
+                      </div>
+                      <div class="testi-name">Ava</div>
+                    </div>
+                    <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-1.png');"></div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="testi-box" data-overlay>
+                    <div class="tb-inner">
+                      <div class="stars">
+                        <span class="fas fa-star"></span>
+                        <span class="fas fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                      </div>
+                      <div class="testi-content">
+                        I’m very proud to be a part of the Cleanzy family. I feel free and happy now that I get to choose and organize my working schedule. Everyday I wake up excited and motivated to go to my job. Thank you Cleanzy for giving me the opportunity to do so!
+                      </div>
+                      <div class="testi-border">
+                        <img src="./assets/images/testi-box-arrow.png">
+                      </div>
+                      <div class="testi-name">Maria</div>
+                    </div>
+                    <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-2.png');"></div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="testi-box" data-overlay>
+                    <div class="tb-inner">
+                      <div class="stars">
+                        <span class="fas fa-star"></span>
+                        <span class="fas fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                      </div>
+                      <div class="testi-content">
+                        Since Cleanzy has come in to my life, I feel like I can achieve my goals. I love cooking, one day I’d love to open a bakery.
+                      </div>
+                      <div class="testi-border">
+                        <img src="./assets/images/testi-box-arrow.png">
+                      </div>
+                      <div class="testi-name">Lida</div>
+                    </div>
+                    <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-3.png');"></div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="testi-box" data-overlay>
+                    <div class="tb-inner">
+                      <div class="stars">
+                        <span class="fas fa-star"></span>
+                        <span class="fas fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                      </div>
+                      <div class="testi-content">
+                        I’m very proud to be a part of the Cleanzy family. I feel free and happy now that I get to choose and organize my working schedule. Everyday I wake up excited and motivated to go to my job. Thank you Cleanzy for giving me the opportunity to do so!
+                      </div>
+                      <div class="testi-border">
+                        <img src="./assets/images/testi-box-arrow.png">
+                      </div>
+                      <div class="testi-name">Maria</div>
+                    </div>
+                    <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-2.png');"></div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="testi-box" data-overlay>
+                    <div class="tb-inner">
+                      <div class="stars">
+                        <span class="fas fa-star"></span>
+                        <span class="fas fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                      </div>
+                      <div class="testi-content">
+                        Since Cleanzy has come in to my life, I feel like I can achieve my goals. I love cooking, one day I’d love to open a bakery combine. my passion and my job. It’s such a great feeling to be able to put my dreams into my work. Cleanzy made it possible for me to dream.
+                      </div>
+                      <div class="testi-border">
+                        <img src="./assets/images/testi-box-arrow.png">
+                      </div>
+                      <div class="testi-name">Ava</div>
+                    </div>
+                    <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-1.png');"></div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="testi-box" data-overlay>
+                    <div class="tb-inner">
+                      <div class="stars">
+                        <span class="fas fa-star"></span>
+                        <span class="fas fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                        <span class="fal fa-star"></span>
+                      </div>
+                      <div class="testi-content">
+                        Since Cleanzy has come in to my life, I feel like I can achieve my goals. I love cooking, one day I’d love to open a bakery.
+                      </div>
+                      <div class="testi-border">
+                        <img src="./assets/images/testi-box-arrow.png">
+                      </div>
+                      <div class="testi-name">Lida</div>
+                    </div>
+                    <div class="thumb-bg" style="background-image: url('./assets/images/testimonial-thumb-3.png');"></div>
+                  </div>
+                </div>
+              </div>
+             
+              <div class="swiper-pagination testimonial-pagination"></div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>

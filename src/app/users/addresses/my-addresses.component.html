@@ -1,0 +1,153 @@
+<div class="aouth-container lg-container">
+   <div class="sidebar-wrapper" >
+    <div class="sidebar-inner">
+      <div class="toggle-mobile"></div>
+      <div class="user-info">
+        <div class="user-photo">
+          <div class="user-photo-inner">
+            <span>
+              <img *ngIf="profileData?.image == null" src="https://cdn.evbuc.com/eventlogos/91884425/imagenotavailablegrid.jpg" height="60px">
+              <img src="{{profileData?.image}}">
+            </span>
+          </div>
+        </div>
+        <h5 class="user-name text-white">{{profileData?.name}}</h5>
+        <div class="btn btn-warning rounded-pill d-block mb-10"><span class="fas fa-dice-five"></span> 0 Happy Point</div>
+        <!-- <h6 class="text-white mb-0">eduardo4595</h6> -->
+      </div>
+      <div class="user-navs">
+        <ul class="list-inline">
+          <li ><a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf015;">Membership Information</a></li>
+          <li><a routerLink="/myprofile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf007;">My Profile</a></li>
+          <li><a routerLink="/my-service"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf562;">My Services</a></li>
+          <li><a routerLink="/myteam" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf0c0;">My Team</a></li>
+          <li><a routerLink="/myaddress" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf3c5;">My Addresses</a></li>
+          <!-- <li><a routerLink="/payment-option" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf53d;">Payment Options</a></li> -->
+          <li><a routerLink="/invite-friend" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf069;">Invite a Friend</a></li>
+          <li><a routerLink="/still-question" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf128;">Still have questions?</a></li>
+          <li><a routerLink="/bonus-cleaning" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf49e;">My Bonus Cleaning Packages</a></li>
+          <li><a routerLink="/change-password" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf3c1;">Change Password</a></li>
+          <li><a routerLink="/delete-account" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf1f8;">Delete My Account</a></li>
+          <li><a (click)="Logout()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-fa-icon="&#xf2f5;">Log out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+     <div class="container">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <div class="main-content">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h2>{{'myAddress.Add-address' | translate}}</h2>
+        </div>
+      </div>
+      <div class="row">
+      
+        <div class="col-xl-6 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+          <div class="row form-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field">
+                  <div class="form-field__control select-box" data-fa-icon="&#xf1ad;">
+                    <div class="">
+                      
+                        <input id="address" #search autocomplete="off" type="text" class="form-field__input" placeholder="" formControlName="location" [ngClass]="{ 'is-invalid': submitted && f.location.errors }" >
+                         <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                          <div *ngIf="f.location.errors.required">{{'myAddress.Location-required' | translate}}</div>
+                      </div>
+
+                    </div>
+                    <label for="address" class="form-field__label">{{'myAddress.Location' | translate}}</label>
+                  </div>
+                </div>
+              </div>
+               <!--  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field">
+                  <div class="form-field__control select-box" data-fa-icon="&#xf21d;">
+                    <div class="select">
+                        <input id="street" type="text" class="form-field__input" placeholder="" formControlName="street_name" >
+                       
+                    </div>
+                    <label for="street" class="form-field__label">Street Name</label>
+                  </div>
+                </div>
+              </div> -->
+           <!--  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group form-field">
+                <div class="form-field__control" data-fa-icon="&#xf1ad;">
+                  <input id="city" type="text" class="form-field__input" placeholder="" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" >
+                         <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                          <div *ngIf="f.city.errors.required">City is required</div>
+                      </div>
+                  <label for="city" class="form-field__label">City</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group form-field">
+                <div class="form-field__control" data-fa-icon="&#xf2c2;">
+                   <input id="postcode" type="text" class="form-field__input" placeholder="" formControlName="post_code" [ngClass]="{ 'is-invalid': submitted && f.post_code.errors }" >
+                         <div *ngIf="submitted && f.post_code.errors" class="invalid-feedback">
+                          <div *ngIf="f.post_code.errors.required">Post Code is required</div>
+                      </div>
+                  <label for="postcode" class="form-field__label">Post Code</label>
+                </div>
+              </div>
+            </div> -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group form-field">
+                <div class="form-field__control" data-fa-icon="&#xf1ad;">
+                  <input id="buildingnumbername" type="text" class="form-field__input" formControlName="building_number" placeholder="" [ngClass]="{ 'is-invalid': submitted && f.building_number.errors }"  />
+
+                  <label for="buildingnumbername" class="form-field__label">{{'myAddress.Building-number' | translate}}</label>
+                  <div *ngIf="submitted && f.building_number.errors" class="invalid-feedback">
+                          <div *ngIf="f.building_number.errors.required">{{'myAddress.Building-Number-required' | translate}}</div>
+                      </div>
+                </div>
+              </div>
+            </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="form-group form-field">
+                <div class="form-field__control" data-fa-icon="&#xf21d;">
+                  <input id="floorflatunitapartment" type="text" class="form-field__input" formControlName="floor_flat_aprtment" placeholder="" [ngClass]="{ 'is-invalid': submitted && f.floor_flat_aprtment.errors }" />
+                  <label for="floorflatunitapartment" class="form-field__label">{{'myAddress.Floor' | translate}}</label>
+                  <div *ngIf="submitted && f.floor_flat_aprtment.errors" class="invalid-feedback">
+                          <div *ngIf="f.floor_flat_aprtment.errors.required">{{'myAddress.Floor-required' | translate}}</div>
+                      </div>
+                </div>
+              </div>
+            </div>
+                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field">
+                  <div class="form-field__control select-box" data-fa-icon="&#xf1ad;" >
+                    <div class="select">
+                        <select id="home" class="form-field__input" formControlName="address_title" [ngClass]="{ 'is-invalid': submitted && f.address_title.errors }" >
+                          <option value="my_home">{{'myAddress.My-Home' | translate}}</option>
+                          <option value="my_secondary_home">{{'myAddress.My-Secondary-Home' | translate}}</option>
+                          <option value="office">{{'myAddress.Office' | translate}}</option>
+                          <option value="other">{{'myAddress.Other' | translate}}</option>
+                        </select>
+                         <div *ngIf="submitted && f.address_title.errors" class="invalid-feedback">
+                          <div *ngIf="f.address_title.errors.required">{{'myAddress.Address-type-required' | translate}}</div>
+                      </div>
+                    </div>
+                    <label for="home" class="form-field__label">{{'myAddress.My-home' | translate}}</label>
+                  </div>
+                </div>
+              </div>
+          </div>
+          
+          <div class="row btn-row mt-20">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <button class="btn btn-primary d-block rounded-pill btn-lg" style="min-width: 150px;">{{'myAddress.Save' | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+  </div>
+  </div>

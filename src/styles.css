@@ -1,0 +1,130 @@
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-calendars/styles/material.css';
+
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.css';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+/* You can add global styles to this file, and also import other style files */
+/* Toastr Messages Show Start */
+@import '~ngx-toastr/toastr';
+/* Toastr Messages Show End */
+
+/* Validation Error Start */
+.error-msg{color: red;}
+/* Validation Error End */
+
+/*------------------------------------
+    Login Page Testimonial Slider Css
+    Added by HAMMADI
+--------------------------------------*/
+body .testimonial-swiper .testi-box .testi-border img{max-width: unset;min-width: unset;width: auto;}
+body .testimonial-swiper .testi-box .testi-border::after{bottom: 9px;}
+body .testimonial-swiper .owl-theme .owl-dots {display: flex;align-items: center;justify-content: center;}
+body .testimonial-swiper .owl-theme .owl-dots .owl-dot span{width: 6px;height: 6px;}
+body .testimonial-swiper .owl-theme .owl-dots .owl-dot.active span{width: 10px;height: 10px;background: #007aff;}
+/*------------------------------------
+    Login Page Testimonial Slider Css
+    Added by HAMMADI
+--------------------------------------*/
+/* Signup Text Added  */
+.signup{text-align: -webkit-center;}
+/* Signup Text Added  */
+
+/* Signin Text Added  */
+.signin{text-align: -webkit-center;}
+/* Signin Text Added  */
+
+/* Sidebar image border */
+.sidebar-wrapper .user-photo img {border-radius: 50% !important;}
+/*Sidebar image border  */
+
+/* login btn */
+.btn:hover, .btn:focus { outline: 0;box-shadow: none; }
+/* login btn */
+
+/* .lg-container .form-field__label {
+    padding: 4px 18px 0 18px !important;
+} */
+
+
+/* For Active link */ 
+.sidebar-wrapper .user-navs li .active {
+    color: #1E1E1E;
+    text-decoration: none;
+}
+.sidebar-wrapper .user-navs li .active::after {
+    content: "";
+    background: #F5F6FA;
+    left: 0;
+    right: -100%;
+    margin-left: -20px;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    border-radius: 50px 0px 0px 50px;
+    z-index: -1;
+}
+.fixImage{
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    height: inherit !important;
+}
+/* atul custom css 17 nov*/
+.service_block .card-body img{
+    width: 60px;
+    height: 60px;
+}
+.service_block .card-body {
+    cursor: pointer;
+}
+ .availability_block .availability-contents .form-control {
+    padding: 0px 15px;
+}
+.availability_block .availability-contents .form-control {
+    padding: 0px 15px;
+}
+.availability_block .e-input-group:not(.e-success):not(.e-warning):not(.e-error):not(.e-float-icon-left), .e-input-group.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap, .e-input-group.e-control-wrapper:not(.e-success):not(.e-warning):not(.e-error):not(.e-float-icon-left), .e-input-group.e-control-wrapper.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap, .e-float-input.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap, .e-float-input.e-control-wrapper.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap {
+    border-color: transparent;
+}
+.availability_block .e-input-group:not(.e-float-icon-left):not(.e-float-input)::before, .e-input-group:not(.e-float-icon-left):not(.e-float-input)::after, .e-input-group.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::before, .e-input-group.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::after, .e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::before, .e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::after, .e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::before, .e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::after {
+    background: transparent;
+}
+.availability_block .e-input-group:not(.e-float-icon-left), .e-input-group.e-control-wrapper:not(.e-float-icon-left) {
+    border-bottom: none;
+}
+.availability_block  .e-time-wrapper .e-time-icon.e-icons, *.e-control-wrapper.e-time-wrapper .e-time-icon.e-icons {
+    font-size: 16px;
+    min-height: 21px;
+    min-width: 20px;
+    border-left: 1px solid;
+    padding-left: 8px;
+}
+.license-number .card img {
+      display: table;
+    margin: 4px auto;
+    height: 90px;
+    width: 90px;
+}
+.e-input-group input.e-input, .e-float-input.e-input-group input, .e-input-group.e-control-wrapper input.e-input, .e-float-input.e-input-group.e-control-wrapper input, .e-float-input input, .e-float-input.e-control-wrapper input {
+    min-height: 22px;
+    padding-top: 7px;
+}
+.basic_info .sp-photo-wrap label.sp-photo-box::after { content: "\f303"; font-family: "Font Awesome 5 Pro"; font-weight: 300; right: 10px;
+    bottom: 10px; height: 40px; width: 40px; background: #237ffa; z-index: 20; position: absolute;
+    border-radius: 2000px; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 21px;
+  }
+  .basic_info  .sp-photo-box img {    height: 186px;}
+
+/* end */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+

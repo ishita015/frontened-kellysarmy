@@ -1,0 +1,92 @@
+<div class="aouth-container lg-container service-provider-container">
+    <app-services-side-bar></app-services-side-bar>
+    <!-- <div class="btn-group">
+      <button type="button" class="btn btn-primary" (click)="useLanguage('pt')"> {{'home.button.pt' | translate}}  </button>
+      <button type="button" class="btn btn-primary" (click)="useLanguage('en')">  {{'home.button.en' | translate}}  </button>
+    </div> -->
+<div class="container">
+    <div class="main-content">
+      <div class="row services-listing-lg">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h3>{{'service-request.request' | translate}}</h3>
+        </div>
+        <div *ngFor="let s of RequestData" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="sc-wrapper mb-25">
+            <div  class="sc-button-wrapper">
+              <ul class="list-inline d-flex align-items-center mb-20 justify-content-end">
+                <li class="mr-10"><a class="btn btn-primary btn-sm rounded-pill" (click)="acceptService(s,'accept')">{{'service-request.accept' | translate}}</a></li>
+                <li><a class="btn btn-outline-secondary btn-sm rounded-pill"  (click)="acceptService(s,'decline')">{{'service-request.decline' | translate}}</a></li>
+              </ul>
+            </div>
+            <div class="card shadow-sm rounded service-card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                    <div class="sc-content">
+                      <div class="sc-image">
+                        <span><img src="{{s.service_image}}"></span>
+                      </div>
+                      <h5 style="cursor: pointer;" (click)="serviceDetails(s)" class="mb-2">{{s.service_name}}</h5>
+                      <p>{{s.services_description}}</p>
+                      <div class="d-flex align-items-center sc-price">
+                        <h2 class="mb-0 theme-color mr-20">€{{s.service_book_amount}}</h2>
+                        <h5 class="mb-0 theme-color">{{s.cleaning_duration}} {{'service-request.hours' | translate}}</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card-secondry">
+                          <span class="d-block">{{'service-request.booking-date' | translate}}</span>
+                          <h6>{{s.booking_date }}</h6>
+                        </div>
+                        <div class="card-secondry">
+                          <span class="d-block">{{'service-request.booking-time' | translate}}</span>
+                          <h6>{{s.booking_time}}</h6>
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card-secondry user-info-box">
+                          <div class="text-center">
+                            <div class="user-photo">
+                              <span><img src="{{s.user_image}}"></span>
+                            </div>
+                            <h6>{{s.user_name}}</h6>
+                            <div class="sc-location">
+                              <span class="fal fa-map-marker-alt"></span>
+                              <span>{{s.location}}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+           <div  *ngIf="RequestData.length == 0" class="row mt-80">
+          <div  class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mainbox">
+     
+            <div class="boxblock">
+             <i class="fas fa-frown-open"></i>
+             </div>
+              <p class="mt-20 mb-20">{{'service-request.not-matches' | translate}}<br> {{'service-request.please-try' | translate}}</p> </div>
+            </div>
+       <!--    <div  *ngIf="RequestData.length == 0" class="alert alert-primary" role="alert">
+   No records found
+</div> -->
+    <!--     <div *ngIf="RequestData.length == 0">
+          No request found
+        </div> -->
+       
+
+      
+     
+
+    </div>
+  </div>
+  </div>

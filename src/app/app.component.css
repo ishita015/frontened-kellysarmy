@@ -1,0 +1,16 @@
+/*.overlay[_ngcontent-wfb-c17] > div[_ngcontent-wfb-c17]:not(.loading-text) {
+    left: 50%;
+    margin: 0;
+    position: absolute;
+    top: 17% !important;
+    transform: translate(0,0%);
+}
+@media screen and (max-width: 600px) {
+.overlay[_ngcontent-rui-c17] > div[_ngcontent-rui-c17]:not(.loading-text) {
+    left: 50%;
+    margin: 0;
+    position: absolute;
+    top: 27% ;
+    transform: translate(-50%,-50%);
+}
+}*/

@@ -1,0 +1,25 @@
+<div class="lg-container-v2">
+  <div class="lg-contents-v2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+        	<h4>{{'blog.Blog-details' | translate}}</h4>
+			<div class="d-flex blogdetails_custom">
+				<div class="blog-img">
+					<img src="{{blog_details?.image}}" alt="">
+				</div>
+				<div class="detailsblogs">
+					<h4>{{blog_details?.title}}</h4>		
+					<p innerHTML="{{blog_details?.body}}"></p>		
+					<h2>{{blog_details?.author_name}}</h2>	
+					<div class="flexitem">
+                        <img height="100px" width="100px" src="{{blog_details?.author_image}}" class="rounded-circle">
+                    </div>
+					<a class="btn btn-primary rounded-pill mt-10" href="{{blog_details?.author_link}}" target="_blank">{{blog_details?.author_link}}</a>
+				</div>
+			</div>
+		</div>
+	  </div>
+	</div>
+   </div>
+</div>

@@ -1,0 +1,124 @@
+<div class="aouth-container lg-container service-provider-container">
+    <app-services-side-bar></app-services-side-bar>
+    <!-- <div class="btn-group">
+      <button type="button" class="btn btn-primary" (click)="useLanguage('pt')"> {{'home.button.pt' | translate}}  </button>
+      <button type="button" class="btn btn-primary" (click)="useLanguage('en')">  {{'home.button.en' | translate}}  </button>
+    </div> -->
+    <div class="container">
+        <div class="main-content">
+          <!-- <div class="row mb-50">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3>Profile Settings</h3>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row form-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+                  <div class="sp-photo-wrap shadow-sm m-0">
+                    <div class="sp-photo-box">
+                      <img src="./assets/images/default-user-image.png">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf007;">
+                        <input id="name" type="text" class="form-field__input" placeholder=""/>
+                        <label for="name" class="form-field__label">Name</label>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf0e0;">
+                        <input id="email" type="text" class="form-field__input" placeholder=""/>
+                        <label for="email" class="form-field__label">Email</label>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf10b;">
+                        <input id="mobile" type="text" class="form-field__input" placeholder=""/>
+                        <label for="mobile" class="form-field__label">Mobile</label>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf023;">
+                        <input id="password" type="text" class="form-field__input" placeholder=""/>
+                        <label for="password" class="form-field__label">Password</label>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf023;">
+                        <input id="password_confirm" type="text" class="form-field__input" placeholder=""/>
+                        <label for="password_confirm" class="form-field__label">Confirm Password</label>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-10">
+                  <button class="btn btn-primary rounded-pill btn-lg">Save Changes</button>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div class="row p-setting-wrapper">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3 class="mb-1">{{'service-notification.notifications-settings' | translate}}</h3>
+              <p>{{'service-notification.title' | translate}}</p>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+              <div class="setting-box shadow-sm">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="flex-item">
+                    <h5 class="mb-0 font-weight-500">{{'service-notification.by-email' | translate}}</h5>
+                  </div>
+                  <div class="flex-item">
+                    <div class="custom-control custom-switch">
+                      <input  (click)="chnageNotification('by_email',$event.target.checked)"   type="checkbox" class="custom-control-input" id="byemail" >
+                      <label class="custom-control-label" for="byemail"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+              <div class="setting-box shadow-sm">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="flex-item">
+                    <h5 class="mb-0 font-weight-500">{{'service-notification.by-SMS' | translate}}</h5>
+                  </div>
+                  <div class="flex-item">
+                    <div class="custom-control custom-switch">
+                      <input (click)="chnageNotification('by_sms',$event.target.checked)"   type="checkbox" class="custom-control-input" id="bysms">
+                      <label class="custom-control-label" for="bysms"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+              <div class="setting-box shadow-sm">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="flex-item">
+                    <h5 class="mb-0 font-weight-500">{{'service-notification.push-notification' | translate}}</h5>
+                  </div>
+                  <div class="flex-item">
+                    <div class="custom-control custom-switch">
+                      <input (click)="chnageNotification('by_push_notification',$event.target.checked)"   type="checkbox" class="custom-control-input" id="push-notification" >
+                      <label class="custom-control-label" for="push-notification"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+         
+    
+        </div>
+      </div>
+</div>

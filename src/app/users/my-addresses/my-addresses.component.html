@@ -1,0 +1,75 @@
+<div class="aouth-container lg-container">
+    <app-sidebar></app-sidebar>
+    <div class="container">
+      <div class="main-content">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2>{{'myAddress.my-address' | translate}}</h2>
+          </div>
+       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <button class="btn btn-primary d-block rounded-pill btn-lg mb-10" (click)="addAddress('0','add')">{{'myAddress.button-add' | translate}}</button>
+          </div>
+            </div>
+               <form [formGroup]="registerForm">
+
+        <div class="row">
+          <div class="col-xl-6 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <div class="row form-row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field">
+                  <div  class="form-field__control" data-fa-icon="&#xf007;">
+                    <input formControlName="my_home" id="myhome" type="text" class="form-field__input" placeholder="" readonly  disabled="" />
+                    <label for="myhome" class="form-field__label">{{'myAddress.form-home' | translate}}</label>
+                  </div>
+                </div>
+                  <div >
+                    <button class="editbutton" *ngIf="registerForm.value.my_home != ''" (click)="addAddress('my_home','edit')"><i class="fas fa-edit"></i></button>
+                  </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field">
+                  <div class="form-field__control" data-fa-icon="&#xf21d;">
+                    <input formControlName="my_secondary_home" id="secondryhome" type="text" class="form-field__input" placeholder="" disabled readonly/>
+                    <label for="secondryhome" class="form-field__label">{{'myAddress.form-secondary-home' | translate}}</label>
+                  </div>
+                </div>
+                 <div >
+                    <button class="editbutton" *ngIf="registerForm.value.my_secondary_home != ''" (click)="addAddress('my_secondary_home','edit')"><i class="fas fa-edit"></i></button>
+                  </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field">
+                  <div class="form-field__control" data-fa-icon="&#xf1ad;">
+                    <input formControlName="office" id="office" type="text" class="form-field__input" placeholder="" readonly disabled/>
+                    <label for="office" class="form-field__label">{{'myAddress.form-Office' | translate}}</label>
+                  </div>
+                </div>
+                 <div >
+                   <button class="editbutton" *ngIf="registerForm.value.office != ''" (click)="addAddress('office','edit')"><i class="fas fa-edit"></i></button>
+                  </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field">
+                  <div class="form-field__control" data-fa-icon="&#xf0ca;">
+                    <textarea formControlName="other" id="other" type="text" class="form-field__input"  placeholder="" readonly disabled></textarea>
+                    <label for="other" class="form-field__label">{{'myAddress.form-Other' | translate}}</label>
+                  </div>
+                </div>
+                 <div >
+                   <button class="editbutton" *ngIf="registerForm.value.other != ''" (click)="addAddress('other','edit')"><i class="fas fa-edit"></i></button>
+                  </div>
+              </div>
+            </div>
+            
+           <!--  <div class="row btn-row mt-20">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <button (click)="updateAddress()" class="btn btn-primary d-block rounded-pill btn-lg" style="min-width: 150px;">Save</button>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </form>
+  
+      </div>
+    </div>
+  </div>

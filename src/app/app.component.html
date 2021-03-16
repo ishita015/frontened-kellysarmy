@@ -1,0 +1,6 @@
+<app-header></app-header>
+<ngx-spinner [fullScreen]="true" type="ball-clip-rotate-multiple" size="medium">
+	<p class="loading"></p>
+</ngx-spinner>
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<app-footer></app-footer>

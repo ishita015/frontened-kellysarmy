@@ -1,0 +1,6 @@
+.sl-item input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    margin-right: 15px;
+}
+.sl-item span b{    font-weight: bold;}

@@ -1,0 +1,54 @@
+<div class="aouth-container lg-container">
+    <app-sidebar></app-sidebar>
+    <div class="container">
+      <div class="main-content">
+        <div class="delete-account">
+          <div class="row">
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3>{{'deleteAccount.heading' | translate}}</h3>
+              <h6 class="po-sub-title">{{'deleteAccount.title' | translate}}</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="reason-container">
+                <ul class="list-inline" id="reasonId">
+                  <li>
+                    <div class="rc-box">
+                      <input  (click)="changeRadio($event.target.checked,'I have a duplicate account')" type="radio" name="a" id="1" class="rd-box">
+                      <label for="1">{{'deleteAccount.radio-button1' | translate}}</label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="rc-box">
+                      <input (click)="changeRadio($event.target.checked,'I’m getting too many emails')" type="radio" name="a" id="2" class="rd-box">
+                      <label for="2">{{'deleteAccount.radio-button2' | translate}}</label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="rc-box">
+                      <input (click)="changeRadio($event.target.checked,'I’m not getting any value from my membership')" type="radio" name="a" id="3" class="rd-box">
+                      <label for="3">{{'deleteAccount.radio-button3' | translate}}</label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="rc-box">
+                      <input (click)="changeRadio($event.target.checked,'Other')" type="radio" name="a" id="4" class="rd-box" checked="">
+                      <label for="4">{{'deleteAccount.radio-button4' | translate}}</label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="notes-container mt-40">
+                <h6>{{'deleteAccount.feedback' | translate}}</h6>
+                <textarea id="feedbackId" class="form-control"></textarea>
+              </div>
+              <div class="action-btns mt-20">
+                <button (click)="deleteAccount()" class="btn btn-primary rounded-pill">{{'deleteAccount.delete-button' | translate}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

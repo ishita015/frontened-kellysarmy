@@ -1,0 +1,71 @@
+<header class="header pt-30 pb-30">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/"><img src="./assets/images/kellsarmy2.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <div class="btn-group">
+           <!-- <button type="button"  class=" btn {{languageType == 'pt' ?'collaps-button' : 'btn-warning'}} btn-sm rounded-pill "  (click)="useLanguage('pt')">  -->
+           <button type="button"  class=" btn {{languageType == 'pt' ?'' : ''}} btn-sm rounded-pill" (click)="useLanguage('pt')" > 
+             <img src="./../../../assets/images/portugal2.png"> </button>
+           <!-- <button type="button" class="btn {{languageType == 'en' ?'collaps-button' : 'btn-warning'}} btn-sm rounded-pill" style="margin-left: 12px;" (click)="useLanguage('en')"> -->
+           <button type="button" class="btn {{languageType == 'en' ?'' : ''}} btn-sm rounded-pill" (click)="useLanguage('en')" style="margin-left: 12px;" >
+            <img src="./../../../assets/images/english2.png">
+           </button>
+          </div>
+          <ul class="navbar-nav" >
+            <li class="nav-item active" id="homeID" (click)="changeLink('homeID')">
+              <a class="nav-link" routerLink="/">{{'home.header-home' | translate}}</a>
+            </li>
+            <li class="nav-item" id="aboutID" (click)="changeLink('aboutID')">
+              <a class="nav-link" routerLink="/about-us">{{'home.header-about' | translate}}</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li> -->
+            <li class="nav-item" id="blogsID" (click)="changeLink('blogsID')">
+              <a class="nav-link" routerLink="/blogs">Blog</a>
+            </li>
+            <li class="nav-item" id="contactID" (click)="changeLink('contactID')">
+              <a class="nav-link" routerLink="/contact-us">{{'home.header-contact' | translate}}</a>
+            </li>
+            <li  *ngIf="variable.login == true"  class="nav-item has-btn" (click)="changeLink('')">
+              <a class="btn btn-primary rounded-pill" routerLink="/member/step1">{{'home.header-become' | translate}}</a>
+            </li> 
+
+           
+            
+
+            <li  *ngIf="variable.login == true" class="nav-item has-btn" (click)="changeLink('')">
+              <a  class="btn btn-outline-secondary rounded-pill" routerLink="/login">{{'home.header-login' | translate}}</a>
+            </li>
+            <li *ngIf="variable.login == false && variable.user_type == '1'" class="nav-item has-btn" (click)="changeLink('')">
+              <a routerLink="/dashboard"  class="btn btn-outline-secondary rounded-pill">{{'home.header-profile' | translate}}</a>
+            </li>
+
+             <li *ngIf="variable.login == false && variable.user_type == '2'" class="nav-item has-btn" (click)="changeLink('')">
+              <a  routerLink="/service-providers/service-profile" class="btn btn-outline-secondary rounded-pill">{{'home.header-profile' | translate}}</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+       <!-- <div class="questions-link" ><a routerLink="/still-question"><span class="fal fa-info-circle"></span><span>Still have questions?</span></a></div> -->
+       <div (click)="changeLink('')" *ngIf="this.variable.user_type == 1 || this.variable.user_type==null " style="right: 302px;" class="questions-link"><a routerLink="/home/scroll"><span>{{'home.header-book' | translate}}</span></a></div>
+
+       <div (click)="changeLink('')" class="questions-link" >
+        <a *ngIf="this.variable.user_type == '1'" routerLink="/still-question"><span class="fal fa-info-circle"></span><span>{{'home.header-still-question' | translate}}</span></a>
+        <a *ngIf="this.variable.user_type == null" routerLink="/still-question"><span class="fal fa-info-circle"></span><span>{{'home.header-still-question' | translate}}</span></a>
+        <a *ngIf="this.variable.user_type == '2'" routerLink="/service-providers/still-question"><span class="fal fa-info-circle"></span><span>{{'home.header-still-question' | translate}}</span></a>
+      </div>
+
+    </div>
+  </header>
+
+
+<style type="text/css">
+  
+.collaps-button{ border-color: #237ffa; background: #237ffa; color: white; }
+
+</style>

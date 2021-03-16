@@ -1,0 +1,69 @@
+
+<div class="contact-wrapper mt-200">
+  <div class="container">
+    <div  *ngFor="let co of contactUsMainData;" class="row">
+      <div class="col-lg-12">
+        <h2 class="text-center">{{'home.header-contact' | translate}}</h2>
+      </div>
+      <div class="col-lg-12 mb-50">
+        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6509156.5834578!2d-123.79616103953882!3d37.1931243309143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia%2C%20USA!5e0!3m2!1sen!2sin!4v1606203360032!5m2!1sen!2sin" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
+        <div id ="map" style="height: 450px" >
+
+      </div>
+      <div class="row mt-3">
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-40">
+        <h3>{{'contact.general-office' | translate}}</h3>
+        <div class="contact-info mb-30">
+          <i class="fas fa-map-marker-alt icon"></i>
+          <h6 class="mb-1">{{'contact.address' | translate}}</h6>
+          <p innerHTML="{{co.address}}"></p>
+        </div>
+        <div class="contact-info mb-30">
+          <i class="fas fa-phone icon"></i>
+          <h6 class="mb-1">{{'contact.phone' | translate}}</h6>
+          <p>{{co.phone}}, Fax: {{co.fax}}</p>
+        </div>
+        <div class="contact-info mb-30">
+          <i class="fas fa-clock icon"></i>
+          <h6 class="mb-1">{{'contact.hours' | translate}}</h6>
+          <p innerHTML="{{co.operating_hours_start}}"></p>
+          <p innerHTML="{{co.operating_hours_end}}"></p>
+        </div>
+      </div>
+      <div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 col-xs-12 mb-40">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <h3>{{'contact.get-touch' | translate}}</h3>
+        <div class="form-group">
+          <label>{{'contact.your-name' | translate}}</label>
+          <input type="text" placeholder="{{'contact.your-name' | translate}}" formControlName="name" class="form-control form-control-lg" [ngClass]="{ 'is-invalid':submitted &&  f.name.errors }">
+           <div *ngIf="f.name.errors" class="invalid-feedback">
+	            <div *ngIf="f.name.errors.required">{{'customer-registration.name-is-required' | translate}}</div>
+	        </div>
+        </div>
+        <div class="form-group">
+          <label>{{'contact.email' | translate}}</label>
+          <input type="email" placeholder="{{'contact.email' | translate}}" formControlName="email" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+	            <div *ngIf="f.email.errors.required">{{'login.email-is-required' | translate}}</div>
+	             <div *ngIf="f.email.errors.pattern">{{'login.invalid-email' | translate}}</div>
+
+	        </div>
+        </div>
+        <div class="form-group">
+          <label>{{'contact.message' | translate}}</label>
+          <textarea placeholder="{{'contact.type-message' | translate}}" formControlName="message" class="form-control form-control-lg"  [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
+          <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+	            <div *ngIf="f.message.errors.required">Message is required</div>
+
+	        </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-lg">{{'contact.send-message' | translate}}</button>
+        </div>
+    </form>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

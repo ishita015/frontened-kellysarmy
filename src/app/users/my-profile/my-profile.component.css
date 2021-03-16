@@ -1,0 +1,30 @@
+/*------------------------------------
+    Form Placeholder
+    Added by ISHITA
+--------------------------------------*/
+
+.lg-container .form-field__control::before {
+    top: 23px;
+}
+
+/*------------------------------------
+    Form Placeholder
+    Added by Aman
+--------------------------------------*/
+
+.profile-content .profile-photo img {
+    display: initial;
+    vertical-align: unset;
+    margin: 0 auto;
+    object-fit: contain;
+    position: absolute;
+   width: 142px;
+   height: 142px;
+}
+.date_profile .form-group .form-field__control> .mat-datepicker-toggle {
+        position: absolute;
+    float: right;
+    bottom: 4px;
+    left: 94%;
+    z-index: 999;
+}

@@ -1,0 +1,87 @@
+ <div class="site-section pt-5 mt-150">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <h2 class="mb-4">Blog</h2>
+          </div>
+        </div>
+        <div class="row blog-entries">
+          <div class="col-md-12 col-lg-8 main-content">
+            <div class="row mb-5 mt-5">
+
+              <div class="col-md-12 newblog">
+
+                <div *ngFor="let blog_data of BlogData;" class="post-entry-horzontal mainblog">
+                  <a class="blog-details" (click)="blogDetails(blog_data.id)">
+                    <!-- <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url({{blog_data.image}});"></div> --> 
+                    <div class="image element-animate blogprofile" data-animate-effect="fadeIn" ><img src="{{blog_data.image}}"></div>
+                    <span class="text">
+                      <h4 innerHtml="{{blog_data.title}}"></h4>
+                      <h2 >Author Name  :  {{blog_data.author_name}}</h2>
+                       <a href="{{blog_data.author_link}}" target="_blank">{{blog_data.author_link}}</a>
+                    </span>
+                  </a>
+                </div>
+                <div *ngIf="BlogData.length == 0"> 
+                  {{'blog.not-found' | translate}}</div>
+                <!-- END post -->
+
+               
+
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <!-- END main-content -->
+
+          <div class="col-md-12 col-lg-4 sidebar">
+            <div class="sidebar-box search-form-wrap">
+              <form action="#" class="search-form">
+                <div class="form-group">
+                  <span class="icon fa fa-search"></span>
+                  <input type="text" (keyup)="search($event.target.value,$event)" class="form-control" id="s" placeholder="{{'blog.placeholder' | translate}}">
+                </div>
+              </form>
+            </div>
+            <!-- END sidebar-box -->
+           <!--  <div class="sidebar-box">
+              <div class="bio text-center">
+                <img src="./assets/images/person_2.jpg" alt="Image Placeholder" class="img-fluid">
+                <div class="bio-body">
+                  <h2>Craig David</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
+                  <p><a href="#" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
+                  <p class="social">
+                    <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
+                    <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
+                    <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
+                    <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
+                  </p>
+                </div>
+              </div>
+            </div> -->
+            <!-- END sidebar-box -->  
+            <div class="sidebar-box">
+              <h3 class="heading">{{'blog.popular-posts' | translate}}</h3>
+              <div class="post-entry-sidebar">
+                <ul>
+                  <li *ngFor="let popular of PopularBlogData;">
+                    <a class="blog-details" (click)="blogDetails(popular.id)">
+                      <img src="{{popular.image}}" alt="Image placeholder" class="mr-4 sideright">
+                      <div class="text">
+                        <h4 class="blog_right_title" innerHTML="{{popular.title}}"></h4>
+                      </div>
+                    </a>
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+            <!-- END sidebar-box -->
+
+        </div>
+      </div>
+    </div>

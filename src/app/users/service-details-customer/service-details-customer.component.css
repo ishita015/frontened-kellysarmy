@@ -1,0 +1,31 @@
+  .rating-list li {
+  float: right;
+  color: #ddd;
+  padding: 10px 5px;
+
+}
+
+.rating-list li:hover,
+.rating-list li:hover ~ li, .rating-list li.selected {
+  color: #ffd700;
+}
+
+.rating-list {
+  display: inline-block;
+  list-style: none;
+}
+
+/*.reviewimg{
+	    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    position: absolute;
+       bottom: 121px;
+    z-index: 9;
+    right: 38%;
+}*/
+.whiteblock{background: #fff;
+    position: relative;
+    padding: 16px 11px;
+    border-radius: 10px;
+    box-shadow: 0 3px 4px #aeafb5;}

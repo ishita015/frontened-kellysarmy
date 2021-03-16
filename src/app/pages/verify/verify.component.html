@@ -1,0 +1,47 @@
+<div _ngcontent-pqi-c26="" class="About-wrapper mt-180">
+<div class="container" style="min-height: 400px;">
+	<div class="row">
+		<div class="col-sm-12 text-center">
+
+<!-- <div *ngIf="ishow == 1">
+Please Wait , We are verifying your account
+</div> -->
+      <div  *ngIf="ishow == 1" class="row mt-80">
+          <div  class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mainbox">
+     
+            <div class="boxblock">
+             <i class="fas fa-frown-open"></i>
+             </div>
+              <p class="mt-20 mb-20">Please Wait...... ,<br> We are verifying your account</p> </div>
+            </div>
+
+
+             <div  *ngIf="ishow == 2" class="row mt-80">
+          <div  class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mainbox">
+     
+            <!-- <div class="boxblock"> -->
+             <!-- <i class="fas fa-sign-in-alt"></i> -->
+             <!-- </div> -->
+              <!-- <p class="mt-20 mb-20">Please Wait...... ,<br>  -->
+              	<p>You account is now verified. You can now login</p> </div>
+            </div>
+
+
+              <div  *ngIf="ishow == 3" class="row mt-80">
+          <div  class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mainbox">
+     
+            <div class="boxblock">
+             <i class="fas fa-smile-beam"></i>
+             </div>
+              <p class="mt-20 mb-20">Your account is verified successfully.<br> We are verifying your account</p> </div>
+            </div>
+<!-- <div *ngIf="ishow == 2">
+Your account is verified successfully. <br>
+You can now <a routerLink="/login">login</a>.
+</div>
+
+<div *ngIf="ishow == 3">
+Something went wrong , please contact admin.</div>.
+</div> -->
+</div>
+</div>

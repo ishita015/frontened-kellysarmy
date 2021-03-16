@@ -1,0 +1,55 @@
+.service-provider-container .input-btn-small {
+    position: absolute !important;
+    top: 17px !important; 
+    right: 22px !important;
+}
+
+.input-icon{
+    position: absolute;
+    bottom: 18px;
+    right: 20px;
+    color: #495057;
+}
+.chang_title{    background: #0069d9;
+    color: #fff;
+    border-left: 5px solid #FFF323;
+    padding: 11px;}
+.changePass{
+    padding: 0;
+    background: #fff;
+}
+.foot{
+    border-top: none;
+}
+
+.availability-contents .abty-box .df-item .e-input-group .e-clear-icon {
+    position: absolute !important;
+    display: none !important;
+}
+.e-time-wrapper .e-input-group-icon.e-icons.e-active {
+
+    color: #237ffa !important;
+    background: transparent !important;
+
+}
+.e-timepicker.e-popup.e-custom-style .e-list-parent.e-ul, /* csslint allow: adjoining-classes */
+.e-timepicker.e-popup .e-list-parent.e-ul .e-list-item { /* csslint allow: adjoining-classes */
+    background-color: #c0ebff !important;
+}
+.e-timepicker.e-popup .e-list-parent.e-ul .e-list-item:hover, /* csslint allow: adjoining-classes */
+.e-timepicker.e-popup .e-list-parent.e-ul .e-list-item.e-active:hover { /* csslint allow: adjoining-classes */
+    background-color: #237FFA !important;
+    color: #fff !important;
+}
+.e-list-parent .e-list-item .e-active {
+    color: #fff !important;
+}
+.availability_block .availability-contents .form-control {
+    padding: 6px 15px !important;
+}
+.e-time-wrapper .e-input-focus{background-color: transparent !important;}
+/*.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: black;
+}
+*/
+

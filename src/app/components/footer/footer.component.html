@@ -1,0 +1,53 @@
+<footer class="footer pt-70 pb-30 pt-md-60 pb-md-20 pt-xs-60 pb-xs-20">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-40">
+          <div class="footer-widget">
+            <div class="foot-logo">
+              <a href=""><img src="./assets/images/logo-footer.png"></a>
+            </div>
+            <p innerHTML="{{contactUsMainData?.address}}"></p>
+            <p class="d-flex align-items-center"><span class="fal fa-envelope icon"></span> <span ><a innerHTML="{{contactUsMainData?.website}}" target="_blank" href="{{contactUsMainData?.website}}"></a></span></p>
+            <p class="d-flex align-items-center"><span class="fal fa-mobile icon"></span> <span innerHTML="{{contactUsMainData?.phone}}"></span></p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 mb-40">
+          <div class="footer-widget">
+            <h3 class="text-white">KellysArmy</h3>
+            <ul class="list-inline">
+              <li><a routerLink="/about-us">{{'home.header-about' | translate}}</a></li>
+              <li><a routerLink="/member/step1">{{'home.header-become' | translate}}</a></li>
+              <li><a routerLink="/how-do-we-clean">{{'home.footer-how-clean' | translate}} </a></li>
+              <li *ngIf="this.variable.user_type == '1'"><a routerLink="/still-question">{{'home.header-still-question' | translate}}</a></li>
+              <li *ngIf="this.variable.user_type == null"><a routerLink="/still-question">{{'home.header-still-question' | translate}}</a></li>
+              <li *ngIf="this.variable.user_type == '2'"><a routerLink="/service-providers/still-question">{{'home.header-still-question' | translate}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 mb-40">
+          <div class="footer-widget">
+            <h3 class="text-white">{{'home.footer-privacy' | translate}}</h3>
+            <ul class="list-inline">
+              <li><a routerLink="/user-agreement">{{'home.footer-user-agreement' | translate}}</a></li>
+              <li><a routerLink="/gdpr">{{'home.footer-gdpr' | translate}}</a></li>
+              <li><a routerLink="/cancellation-policy">{{'home.footer-cancellation-policy' | translate}}</a></li>
+              <li><a routerLink="/change-policy">{{'home.footer-change-policy' | translate}}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-xs-12 mb-40">
+          <div class="footer-widget">
+            <h3 class="text-white">{{'home.footer-social' | translate}}</h3>
+            <ul class="list-inline">
+              <li>
+                <a (click)="open(socialLinks?.facebook_link)"  class="d-flex align-items-center"><span class="fab fa-facebook mr-10"></span> <span>{{'home.footer-facebook' | translate}}</span></a>
+              </li>
+              <li>
+                <a (click)="open(socialLinks?.twitter_link)" class="d-flex align-items-center"><span class="fab fa-twitter mr-10"></span> <span>{{'home.footer-twitter' | translate}}</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>

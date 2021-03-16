@@ -1,0 +1,76 @@
+<div class="aouth-container lg-container">
+    <app-sidebar></app-sidebar>
+    <div class="container">
+      <div class="main-content">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3>Membership information</h3>
+          </div>
+        </div>
+         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-xl-6 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+            <div class="row form-row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field">
+                  <div class="form-field__control" data-fa-icon="&#xf007;">
+                    <input formControlName="name" id="name" type="text" class="form-field__input" placeholder="" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+                    <label for="name" class="form-field__label">Name</label>
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">Name is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field">
+                  <div class="form-field__control" data-fa-icon="&#xf095;">
+                    <input id="phone" type="text" class="form-field__input" placeholder="" formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"/>
+                    <label for="phone" class="form-field__label">Phone number</label>
+                     <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                        <div *ngIf="f.mobile.errors.required">Phone is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field">
+                  <div class="form-field__control" data-fa-icon="&#xf0e0;">
+                    <input id="email" type="text" class="form-field__input" placeholder="" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                    <label for="email" class="form-field__label">Email</label>
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group form-field">
+                  <div class="form-field__control" data-fa-icon="&#xf023;">
+                    <input readonly="" (click)="picker.open()" [matDatepicker]="picker" id="birthday" formControlName="birthday" type="text" class="form-field__input" placeholder=""/>
+                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                    <label for="birthday" class="form-field__label">Birthday</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+           <!--  <div class="row form-row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="terms-box mt-20">
+                  <input type="checkbox" formControlName="membership" name="terms" id="terms" class="chk-box">
+                  <label for="terms">I accept receiving announcement and promotion emails, phone calls, SMS and mailings from Cleanzy UK  and its business partners.</label>
+                </div>
+              </div>
+            </div> -->
+            <div class="row btn-row mt-20">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <button class="btn btn-primary d-block rounded-pill w-100 btn-lg">Save Changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>

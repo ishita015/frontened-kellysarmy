@@ -1,0 +1,727 @@
+<div class="aouth-container lg-container service-provider-container">
+   <app-services-side-bar></app-services-side-bar>
+ <!--   <div class="btn-group">
+    <button type="button" id="PRID" class="btn btn-primary" (click)="useLanguage('pt')"> PR </button>
+    <button type="button" id="ENNID" class="btn btn-primary" (click)="useLanguage('en')"> EN  </button>
+  </div> -->
+  
+    <div class="container">
+      <form [formGroup]="stepForm">
+        <div class="main-content">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3>{{'registration.title1' | translate}}</h3>
+            </div>
+           
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 basic_info">
+              <div class="row form-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+                  <div class="sp-photo-wrap shadow-sm m-0">
+                    <div class="sp-photo-box">
+                      <label _ngcontent-vgs-c70="" for="photo_upload" class="sp-photo-box">
+                        <input _ngcontent-vgs-c70="" accept="image/*" (change)="onSingleFileProfileChange($event)" type="file" name="photo_upload" 
+                        id="photo_upload" class="upload_input ">
+                        <!-- <img _ngcontent-vgs-c70="" *ngIf ="basicInfo?.image == null" src ="./assets/images/default-user-image.png" class="fixImage ng-star-inserted"> -->
+                        <img [src]= "!imageSelect1 ? url12 :image_path + basicInfo?.image">
+                        <!-- <img *ngIf ="basicInfo?.image != null" src= "{{image_path}}{{basicInfo?.image}}"> -->
+                        <!--bindings={
+                        "ng-reflect-ng-if": "true"
+                      }--><!--bindings={
+                        "ng-reflect-ng-if": "false"
+                      }--></label>
+                    </div>
+                  </div>
+                   <!-- <input id="upload_documents"  type=file formControlName="image" (change)="onSingleFileChange($event)" 
+                    class="form-field__input mt-3 mb-2" placeholder=""/> -->
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field" id="nameIdInput"> 
+                      <div class="form-field__control" data-fa-icon="&#xf007;">
+                        <input (change)= "func.addFocus()" id="name" type="text" onKeyPress="if(this.value.length == 50) return false;"  formControlName="name" class="form-field__input" placeholder=""/>
+                        <label for="name" class="form-field__label">{{'registration.name' | translate}}</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['name'].errors && ( !stepForm.controls['name'].pristine || submitted ||stepForm.controls['name'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['name'].errors.required">{{'customer-registration.name-is-required' | translate}}</div>
+                        <div [hidden]="!stepForm.controls.name.hasError('minlength')">{{'customer-registration.minimum-name' | translate}}</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf0e0;">
+                        <input (change)= "func.addFocus()" id="email" type="email" formControlName="email" onKeyPress="if(this.value.length==50) return false;" 
+                        class="form-field__input" placeholder="" disabled/>
+                        <label for="email" class="form-field__label">{{'registration.email' | translate}}</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['email'].errors && ( !stepForm.controls['email'].pristine || submitted ||stepForm.controls['email'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['email'].errors.required">{{'login.email-is-required' | translate}}</div>
+                        <div [hidden]="!stepForm.controls['email'].errors.pattern">{{'login.invalid-email' | translate}}</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf10b;">
+                        <input (change)= "func.addFocus()" id="mobile" type="text"  onkeypress="if(this.value.length==15) return false;return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 "  
+                        formControlName="mobile" class="form-field__input" placeholder=""/>
+                        <label for="mobile" class="form-field__label">{{'registration.mobile' | translate}}</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['mobile'].errors && ( !stepForm.controls['mobile'].pristine || submitted ||stepForm.controls['mobile'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['mobile'].errors.required">{{'customer-registration.Mobile-required' | translate}}</div>
+                        <div [hidden]="!stepForm.controls['mobile'].hasError('minlength')">{{'customer-registration.length-mob' | translate}}</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div (click)="checkpass()" class="input-btn-small" >
+                        <a class="btn btn-primary rounded-pill">{{'registration.change' | translate}}</a>
+                      </div>
+                      <div class="form-field__control" data-fa-icon="&#xf023;">
+                        <input id="password" type="text" class="form-field__input" 
+                        formControlName="password" onKeyPress="if(this.value.length==8) return false;"/>
+                        <label for="password" class="form-field__label">{{'registration.current-password' | translate}}</label>
+                      </div>
+                      <div *ngIf="password_valid && stepForm.controls['password'].errors && ( !stepForm.controls['password'].pristine || submitted ||stepForm.controls['password'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['password'].errors.required">{{'login.Password-is-required' | translate}}</div>
+                        <div [hidden]="!stepForm.controls['password'].hasError('minlength')">{{'login.minimum' | translate}}</div>
+                      </div>
+                    </div>
+                </div>
+                <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf023;">
+                        <input (change)= "func.addFocus()"  [type]="showHideBtn ? 'password' : 'text'" onKeyPress="if(this.value.length==8) return false;"  id="password" type="password" 
+                        formControlName="password" class="form-field__input" placeholder=""/>
+                        <label for="password" class="form-field__label">Password</label>
+                        <a href="javascript:void(0);" (click)="showHidePassword()" id="show"><span class="input-icon"
+                            [ngClass]="{'fa': true, 'fa-eye': (!showHideBtn), 'fa-eye-slash': (showHideBtn)}"></span></a>
+                      </div>
+                      <div *ngIf="stepForm.controls['password'].errors && ( !stepForm.controls['password'].pristine || submitted ||stepForm.controls['password'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['password'].errors.required">Password is required.</div>
+                        <div [hidden]="!stepForm.controls['password'].hasError('minlength')">Password length should be minimum 5 characters. </div>
+                      </div>
+                    </div>
+                </div> -->
+              </div>
+            </div>
+          
+          </div>
+          <div class="row mt-20">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3>{{'registration.service-location' | translate}}</h3>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row form-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                    <div class="form-field__control" data-fa-icon="&#xf013;">
+                      <!-- <input id="pincode" type="text" (change)="func.addFocus()" onKeyPress="if(this.value.length==8) return false;"  (change)="postCheck()" formControlName="pin_code_id" class="form-field__input" placeholder=""/> -->
+                      <input id="pincode" #search type="text" autocomplete="off"   formControlName="pin_code" class="form-field__input" placeholder=""/>
+                      <!-- <label for="pincode" class="form-field__label">Service Area</label> -->
+                     <!--  <select class="form-control" (change)="onChangePin($event)" formControlName="pin_code" id="pin_code" name="pin_code">
+                        <option  > {{basicInfo?.pin_code}} </option>
+                        <option *ngFor="let pin of postObj" [value]="pin.id">
+                           {{pin?.pin_code}}  
+                        </option>
+                      </select> -->
+                    </div>
+                  </div>
+                  <div *ngIf="stepForm.controls['pin_code'].errors && ( !stepForm.controls['pin_code'].pristine || submitted ||stepForm.controls['pin_code'].touched )" class="error-msg">
+                    <div [hidden]="!stepForm.controls['pin_code'].errors.required">{{'customer-registration.Service-Area-required' | translate}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h5>{{'registration.service-information' | translate}}</h5>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-20">
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+               
+                  <div class="po-options-grid d-block m-0">
+                    <div class="selectable-box">
+                      <input type="radio"  value="1" 
+                      (click)="individual_type();updateIndividucalFIn($event.target.checked,1)" class="chk-box dev_individual_1"  name="provider_type" id="individual">
+                      
+                      <!-- <input  type="radio"  value="1" 
+                      (click)="individual_type()" class="chk-box displayNone dev_individual" 
+                      [checked] ="checked"  name="provider_type" id="individual"> -->
+                      <label for="individual">{{'registration.individual' | translate}}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <div class="po-options-grid d-block m-0">
+                    <div class="selectable-box">
+                      <input type="radio" class="chk-box type_public_1" 
+                      value="2" (click)="public_type();updateIndividucalFIn($event.target.checked,2)" name="provider_type" id="public">
+
+                      <!-- <input type="radio" class="chk-box  displayNone type_public" 
+                      formControlName="provider_type"  checked ="checked"
+                      value="2"  (click)="public_type()" name="provider_type" id="public"> -->
+                      <label for="public">{{'registration.public' | translate}}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <div class="po-options-grid d-block m-0">
+                    <div class="selectable-box">
+                      <input type="radio" class= "chk-box type_private_1" 
+                      (click)="private_type();updateIndividucalFIn($event.target.checked,3)"  value="3"  name="provider_type" id="private">
+                      <!-- <input type="radio" class="chk-box displayNone type_private" 
+                      formControlName="provider_type" checked ="checked"
+                      value="2" (click)="public_type()" name="provider_type" id="public"> -->
+                      <label for="private">{{'registration.private' | translate}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="stepForm.controls['provider_type'].errors && ( !stepForm.controls['provider_type'].pristine || submitted ||stepForm.controls['provider_type'].touched )" class="error-msg">
+                <div [hidden]="!stepForm.controls['provider_type'].errors.required">{{'customer-registration.type-required' | translate}}</div>
+              </div>
+            </div>
+            <div *ngIf="TeamSizeHide" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row form-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                    <div class="form-field__control" data-fa-icon="&#xf007;">
+                      <input (change)= "func.addFocus()" id="team_size" type="text"  onkeypress="if(this.value.length==3) return false;return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 " formControlName="team_size" class="form-field__input" placeholder="" />
+                      <label for="team-size" class="form-field__label">{{'registration.team-size' | translate}}</label>
+                    </div>
+                  </div>
+                  <div *ngIf="team_size_valid && stepForm.controls['team_size'].errors && ( !stepForm.controls['team_size'].pristine || submitted ||stepForm.controls['team_size'].touched )" class="error-msg">
+                    <div [hidden]="!stepForm.controls['team_size'].errors.required">{{'customer-registration.Teamsize-required' | translate}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h5>{{'registration.choose-service' | translate}}</h5>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 service_block">
+              <div class="row service-lists-sm">
+                <div *ngFor="let show of img_choose_Obj"  class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  
+                  <div id="cleaningID" class="{{finalCl.indexOf(show.id) != -1 ? 'card d-block shadow-sm rounded mb-20 card-active ':'card d-block shadow-sm rounded mb-20'}}"
+                  (click)="chooseServices(show.id)"
+                  >
+                    <div class="card-body">
+                      <!-- <input type="checkbox"> -->
+                      <div class="d-flex align-items-center">
+                        <div class="flex-item mr-20">
+                          <img src="{{show.image}}">
+                        </div>
+                        <div class="flex-item">
+                          <h5 class="font-weight-500 mb-0 font-family-karla">{{show.service_name}}</h5>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card d-block shadow-sm rounded mb-20 card-active">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center">
+                        <div class="flex-item mr-20">
+                          <img src="./assets/images/service_deep_cleaning_small.png">
+                        </div>
+                        <div class="flex-item">
+                          <h5 class="font-weight-500 mb-0 font-family-karla">Deep Cleaning</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 service_block">
+              <h5>Additional Services</h5>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 service_block">
+              <div class="row service-lists-sm">
+                
+                <div *ngFor="let additional of img_add_Obj" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+       
+                  <div  class="{{finalCl.indexOf(additional.id) != -1 ? 'card d-block shadow-sm rounded mb-20 card-active ':'card d-block shadow-sm rounded mb-20'}}"
+                  (click)="addServices(additional.id)"
+                  >
+                    <div class="card-body">
+                      <!-- <input type="checkbox" > -->
+                      <!-- <div class="d-flex align-items-center">
+                        <div class="flex-item mr-20">
+                          <img src="{{additional.image}}">
+                        </div>
+                        <div class="flex-item">
+                          <h5 class="font-weight-500 mb-0 font-family-karla">{{additional.service_name}}</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            <!-- </div> --> 
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h5>{{'registration.VAT-number' | translate}}</h5>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                    <div class="form-field__control" data-fa-icon="&#xf3ed;">
+                      <input id="license_number" (change)= "func.addFocus()" onkeypress="if(this.value.length==15) return false;return event.charCode >= 48 && event.charCode <= 57 ||event.charCode == '.' || event.charCode == 250 " type="text" 
+                      formControlName="vat_number" class="form-field__input" placeholder=""/>
+                      <label for="license_number" class="form-field__label">{{'registration.VAT-number' | translate}}</label>
+                    </div>
+                  </div>
+                  <div *ngIf="stepForm.controls['vat_number'].errors && ( !stepForm.controls['vat_number'].pristine || submitted ||stepForm.controls['vat_number'].touched )" class="error-msg">
+                    <div [hidden]="!stepForm.controls['vat_number'].errors.required">{{'customer-registration.VAT-Number-required' | translate}}</div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="input-btn-small">
+                        <!-- <a  class="btn btn-outline-primary rounded-pill">Browse</a> -->
+                      </div>
+                      <div class="form-field__control" data-fa-icon="&#xf382;">
+                        <input id="upload_documents" accept=".jpg,.jpeg,.png,.pdf"  type=file  multiple = "multiple" (change)="onFileChange($event)" 
+                        class="form-field__input mt-3 mb-2" placeholder=""/>
+                        <!-- <label for="upload_documents" class="form-field__label">Upload License Documents</label> -->
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="alert alert-warning" role="alert">
+                    {{'registration.image-format' | translate}}
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 license-number">
+                  <div class="row">
+                    <div *ngFor='let show_img of resDoc; let i = index' class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 mb-20">
+                      <div class="card shadow-sm">
+                        <!-- <div (click)="closeImage(i,show_img.id)" class="close-icon-thumb"></div> -->
+                        <!-- <a target="_blank" href="show_img.doc_name">  -->
+                        <a target="_blank" > 
+                          <img style="cursor: pointer;" id="idimage" [src]="show_img.doc_name" (click)="newTabImage(i)">
+                          <!-- <img  id="idimage" [src]="show_img" (click)="newTabImage(i)"> -->
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <h5>Rate</h5>
+                </div> -->
+               <!--  <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf3d1;">
+                        <input id="rate" type="text" (change)= "func.addFocus()" formControlName="rate_per_hour" class="form-field__input" placeholder=""/>
+                        <label for="rate" class="form-field__label">Rate per hour (Per member)</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['rate_per_hour'].errors && ( !stepForm.controls['rate_per_hour'].pristine || submitted ||stepForm.controls['rate_per_hour'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['rate_per_hour'].errors.required">Rate Per Hour is required.</div>
+                      </div>
+                    </div>
+                </div> -->
+              </div>
+            </div>
+
+
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3>{{'registration.card_details' | translate}}</h3>
+            </div>
+           
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 basic_info">
+              <div class="row form-row">
+                <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field" id="nameIdInput"> 
+                      <div class="form-field__control" data-fa-icon="&#xf007;">
+                        <input (change)= "func.addFocus()" id="banker_name" type="text" onKeyPress="if(this.value.length == 30) return false;"  formControlName="banker_name" class="form-field__input" placeholder=""/>
+                        <label for="banker_name" class="form-field__label">{{'registration.banker_name' | translate}}</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['banker_name'].errors && ( !stepForm.controls['banker_name'].pristine || submitted ||stepForm.controls['banker_name'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['banker_name'].errors.required">{{'registration.banker_name_validation' | translate}}</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field" id="nameIdInput"> 
+                      <div class="form-field__control" data-fa-icon="&#xf007;">
+                        <input (change)= "func.addFocus()" id="bank_name" type="text" onKeyPress="if(this.value.length == 30) return false;"  formControlName="bank_name" class="form-field__input" placeholder=""/>
+                        <label for="bank_name" class="form-field__label">{{'registration.bank_name' | translate}}</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['bank_name'].errors && ( !stepForm.controls['bank_name'].pristine || submitted ||stepForm.controls['bank_name'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['bank_name'].errors.required">{{'registration.bank_name_validation' | translate}}</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field" id="nameIdInput"> 
+                      <div class="form-field__control" data-fa-icon="&#xf007;">
+                        <input (change)= "func.addFocus()" id="account_number" type="text" onKeyPress="if(this.value.length == 11) return false;"  formControlName="account_number" class="form-field__input" placeholder=""/>
+                        <label for="account_number" class="form-field__label">{{'registration.account_number' | translate}}</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['account_number'].errors && ( !stepForm.controls['account_number'].pristine || submitted ||stepForm.controls['account_number'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['account_number'].errors.required">{{'registration.account_number_validation' | translate}}</div>
+                      </div>
+                    </div>
+                </div> -->
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group form-field" id="nameIdInput"> 
+                      <div class="form-field__control" data-fa-icon="&#xf007;">
+                        <input (change)= "func.addFocus()" id="iban_number" type="text" onKeyPress="if(this.value.length == 25) return false;"  formControlName="iban_number" class="form-field__input" placeholder=""/>
+                        <label for="iban_number" class="form-field__label">{{'registration.iban_number' | translate}}</label>
+                      </div>
+                      <div *ngIf="stepForm.controls['iban_number'].errors && ( !stepForm.controls['iban_number'].pristine || submitted ||stepForm.controls['iban_number'].touched )" class="error-msg">
+                        <div [hidden]="!stepForm.controls['iban_number'].errors.required">{{'registration.iban_number_validation' | translate}}</div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3>{{'registration.heading3' | translate}}</h3>
+            </div>
+            <div  class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 availability_block">
+              <div class="row justify-content-center availability-contents">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box shadow-sm">
+                  
+                    <div class="d-flex align-items-center justify-content-between">
+                      <input type="checkbox" formControlName="isAvailableMonday" 
+                      [checked]="service_Obj?.isAvailableMonday == 'true' ? 'true' : 'false'"
+                      >
+                      <div class="df-item">
+                        <div class="day-name">{{'registration.monday' | translate}}</div>
+                      </div>
+                      <div  class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" id="monday_start"  class="form-control form-control-sm" 
+                              formControlName="monday_start"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval' id="monday_start"  class="form-control form-control-sm" 
+                               formControlName="monday_start" placeholder="Start Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                         
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" id="monday_end" class="form-control form-control-sm" 
+                              formControlName="monday_end"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval' id="monday_end" class="form-control form-control-sm" 
+                              formControlName="monday_end" placeholder="End Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <input type="checkbox" formControlName="isAvailableTuesday"  
+                      [checked]="service_Obj?.isAvailableTuesday == 'true' ? 'true' : 'false'">
+                      <div class="df-item">
+                        <div class="day-name">{{'registration.Tuesday' | translate}}</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm"
+                              formControlName="tuesday_start"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm"
+                              formControlName="tuesday_start" placeholder="Start Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm" 
+                               formControlName="tuesday_end"> -->
+                               <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" 
+                               formControlName="tuesday_end" placeholder="End Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <input type="checkbox" formControlName="isAvailableWednesday"  
+                      [checked]="service_Obj?.isAvailableWednesday == 'true' ? 'true' : 'false'">
+                      <div class="df-item">
+                        <div class="day-name">{{'registration.Wednesday' | translate}}</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm" 
+                              formControlName="wednesday_start"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" 
+                              formControlName="wednesday_start" placeholder="Start Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm"  
+                              formControlName="wednesday_end"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval'  class="form-control form-control-sm"  
+                              formControlName="wednesday_end" placeholder="End Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <input type="checkbox"  formControlName="isAvailableThusday" 
+                      [checked]="service_Obj?.isAvailableThusday == 'true' ? 'true' : 'false'">
+                      <div class="df-item">
+                        <div class="day-name">{{'registration.Thursday' | translate}}</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm" 
+                              formControlName="thusday_start"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval'  class="form-control form-control-sm" 
+                              formControlName="thusday_start" placeholder="Start Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm"
+                              formControlName="thusday_end"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm"
+                              formControlName="thusday_end" placeholder="End Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <input type="checkbox" formControlName="isAvailableFriday"  
+                      [checked]="service_Obj?.isAvailableFriday == 'true' ? 'true' : 'false'">
+                      <div class="df-item">
+                        <div class="day-name">{{'registration.Friday' | translate}}</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm" 
+                              formControlName="friday_start"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval'  class="form-control form-control-sm" 
+                              formControlName="friday_start" placeholder="Start Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm"
+                              formControlName="friday_end"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval'  class="form-control form-control-sm"
+                        formControlName="friday_end" placeholder="End Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <input type="checkbox" formControlName="isAvailableSaturday"  
+                      [checked]="service_Obj?.isAvailableSaturday == 'true' ? 'true' : 'false'">
+                      <div class="df-item">
+                        <div class="day-name">{{'registration.Saturday' | translate}}</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm" 
+                              formControlName="saturday_start"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" 
+                              formControlName="saturday_start" placeholder="Start Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm"
+                              formControlName="saturday_end"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm"
+                              formControlName="saturday_end" placeholder="End Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-10">
+                  <div class="abty-box">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <input type="checkbox" formControlName="isAvailableSunday"  
+                      [checked]="service_Obj?.isAvailableSunday == 'true' ? 'true' : 'false'">
+                      <div class="df-item">
+                        <div class="day-name">{{'registration.Sunday' | translate}}</div>
+                      </div>
+                      <div class="df-item">
+                        <div class="row justify-content-end">
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm" 
+                              formControlName="sunday_start"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm" 
+                              formControlName="sunday_start" placeholder="Start Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="input-group mb-0 mr-sm-2">
+                              <!-- <input type="time" class="form-control form-control-sm"
+                              formControlName="sunday_end"> -->
+                              <ejs-timepicker [format]='formatString' [step]='interval' class="form-control form-control-sm"
+                              formControlName="sunday_end" placeholder="End Time"></ejs-timepicker>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center mt-30">
+                  <button class="btn btn-primary rounded-pill btn-lg" (click)="submitForm3()"  style="min-width: 150px;">{{'registration.Submit' | translate}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          
+    
+        </div>
+      </form>
+      </div>
+</div>
+<style type="text/css">
+  .chang_modal .modal-content {
+    border: 2px solid #0069d9;
+    padding: 20px 0;}
+       .lg-container .form-field__input{ border-bottom: 1px solid #dadada !important;}
+       .form-field__control{    margin-bottom: 10px;
+    border-radius: 10px !important;
+    border-bottom: 1px solid transparent !important;}
+</style>
+<!-- Modal -->
+<div style="    margin-top: 100px !important;" class="modal fade chang_modal" id="exampleModal"  data-backdrop="static" data-keyboard="false" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+      <form [formGroup]="passwordForm" autocomplete="off">
+      <div class="modal-body">
+        <div class="aouth-container lg-container changePass">
+          <div class="main-content">
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h6 class="chang_title">{{'changePassword.heading' | translate}}</h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row form-row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf023;">
+                        <input id="new-password" type="password" 
+                        [type]="showHidePass ? 'password' : 'text'" 
+                        formControlName="newPass" onKeyPress="if(this.value.length==8) return false;" 
+                        class="form-field__input" />
+                        <a href="javascript:void(0);" (click)="showHideChangePaswrd()"><span class="input-icon"
+                          [ngClass]="{'fa': true, 'fa-eye': (!showHidePass), 'fa-eye-slash': (showHidePass)}"></span></a>
+                        <label for="new-password" class="form-field__label">{{'changePassword.new-password' | translate}}</label>
+                      </div>
+                    </div>
+                    <div *ngIf="passwordForm.controls['newPass'].errors && ( !passwordForm.controls['newPass'].pristine || submitted || passwordForm.controls['newPass'].touched )" class="error-msg">
+                      <div [hidden]="!passwordForm.controls['newPass'].errors.required">{{'changePassword.New-Password-required' | translate}}</div>
+                      <div [hidden]="!passwordForm.controls.newPass.hasError('minlength')">{{'changePassword.password_length' | translate}}</div>
+                    </div>
+                  </div><br>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group form-field">
+                      <div class="form-field__control" data-fa-icon="&#xf023;">
+                        <input id="confirm-password" type="password" 
+                        [type]="showHideConfirmPass ? 'password' : 'text'" 
+                        onKeyPress="if(this.value.length==8) return false;"
+                        formControlName="conformPass"
+                        class="form-field__input"/>
+                        <a href="javascript:void(0);" (click)="showHideConfirm()"><span class="input-icon"
+                          [ngClass]="{'fa': true, 'fa-eye': (!showHideConfirmPass), 'fa-eye-slash': (showHideConfirmPass)}"></span></a>
+                        <label for="confirm-password" class="form-field__label">{{'changePassword.confirm-new-pasword' | translate}}</label>
+                      </div>
+                      <div *ngIf="passwordForm.controls['conformPass'].errors && ( !passwordForm.controls['conformPass'].pristine || submitted || passwordForm.controls['conformPass'].touched )" class="error-msg">
+                        <div [hidden]="!passwordForm.controls['conformPass'].errors.required">{{'changePassword.Confirm-Password-required' | translate}}</div>
+                        <div [hidden]="!passwordForm.controls['conformPass'].errors.mustMatch">{{'changePassword.password_conPass' | translate}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="row btn-row mt-20">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button class="btn btn-primary d-block rounded-pill btn-lg">Change My Password</button>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+      
+          </div>
+       
+        </div>
+      </div>
+      <div class="modal-footer foot">
+        <button type="button" class="btn btn-outline-secondary rounded-pill" data-dismiss="modal">{{'changePassword.close' | translate}}</button>
+        <button type="button" (click)="paswrdSubmit()" class="btn btn-primary rounded-pill ng-star-inserted">{{'changePassword.submit' | translate}}</button>
+      </div>
+    <!-- </div> -->
+  </form>
+  </div>
+</div>
+</div>
+<style>
+  .displayNone{
+    display: none;
+  }
+</style>

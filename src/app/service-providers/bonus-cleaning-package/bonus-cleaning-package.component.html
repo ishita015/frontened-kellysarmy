@@ -1,0 +1,84 @@
+<div class="aouth-container lg-container">
+    <app-services-side-bar></app-services-side-bar>
+    <div class="container">
+      <div class="main-content">
+        <div class="bonus-packages">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h2>My Bonus Cleaning Packages</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+              <form [formGroup]="activateForm" (ngSubmit)="activeteCode()" >
+              <div class="row form-row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <p>The Bonus Cleaning Package offers more cleaning for a better price. You pay discounted prices and win a certain amount of bonus money, as you can see on your account page.The discount ratio increases on the biggest packages.</p>
+                  <div class="form-group form-field">
+                    <div class="form-field__control" data-fa-icon="&#xf121;">
+                      <input id="activate" type="text" formControlName="code" class="form-field__input" placeholder=""/>
+                      <label for="activate" class="form-field__label">Activate</label>
+                    </div>
+                    <div *ngIf="activateForm.controls['code'].errors && ( !activateForm.controls['code'].pristine || submitted ||activateForm.controls['code'].touched )" class="error-msg">
+                      <div [hidden]="!activateForm.controls['code'].errors.required">
+                        Activate code is required.
+                      </div>
+                     </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row btn-row mt-20">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <button class="btn btn-primary d-block rounded-pill btn-lg">Activate</button>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-50 packages-cards">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="card shadow-sm mb-25">
+                <div class="card-header bg-primary">
+                  <h6 class="mb-0 text-white">Remaining Points</h6>
+                </div>
+                <div class="card-body">
+                  <div class="text">
+                    <h1 class="theme-color mb-0">0</h1>
+                    <h6 class="mb-0">Points</h6>
+                  </div>
+                  <!-- <div class="expiry-tag"><span>Exp: Dec 10</span></div> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="card shadow-sm mb-25">
+                <div class="card-header bg-warning">
+                  <h6 class="mb-0 text-white">Redeem Points</h6>
+                </div>
+                <div class="card-body">
+                  <div class="text">
+                    <h1 class="text-warning mb-0">0</h1>
+                    <h6 class="mb-0">Points</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="card shadow-sm mb-25">
+                <div class="card-header bg-primary">
+                  <h6 class="mb-0 text-white">Total Points</h6>
+                </div>
+                <div class="card-body">
+                  <div class="text">
+ <h1 class="theme-color mb-0">{{totalPoints.total_points == undefined ? 0 : totalPoints.total_points}}</h1>                    <h6 class="mb-0">Points</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+      </div>
+    </div>
+  </div>

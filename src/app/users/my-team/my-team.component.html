@@ -1,0 +1,99 @@
+<div class="aouth-container lg-container">
+    <app-sidebar></app-sidebar>
+    <div class="container">
+      <div class="main-content">
+        <div class="row">
+         <!--  <div class="col-xl-4 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+            <div class="my-team-image">
+              <span><img src="./assets/images/my-team.png"></span>
+            </div>
+          </div> -->
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2 class="mb-10">{{'myTeam.my-team' | translate}}</h2>
+           <!--  <span class="theme-color mb-15 d-block">CleanRex Staff </span>
+            <p>The Cleaning Professionals that you gave higher points than 4 will be automatically added to the "My Team" section. You can easily see your team on the order page, and then request one of these Cleaning Professionals for your next service.</p>
+            <h5 class="theme-color mt-30 mb-10">John Watson <span>(8 + Years Experience)</span></h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p> -->
+  				<div class="row my-team-swiper mt-25">
+  					<div *ngFor="let s of getMyTeamData;" class="col-sm-3">
+  						 <div class="mt-box">
+                      <div class="mt-photo"><span><img onError="this.src='./assets/images/avatar.jpg'" src="{{s.image}}"></span></div>
+                      <h6>{{s.name}}</h6>
+                         <ul class="list-inline rating-list" style="display: inline-block !important;">
+                          <li (click)="countStar(star)"
+                              [ngClass]="{'selected': (star <= s.total_rating)}" *ngFor="let star of stars" style="float:left;">
+                            <i class="fa fa-star"></i>
+                          </li> 
+                    </ul>
+                     
+                 
+                      <!-- <h6>Average Rating {{s.total_rating}}</h6> -->
+                    </div>
+  					</div>
+  				</div>
+         <!--    <div class="my-team-swiper">
+              <div class="swiper-container">
+                 <swiper [config]="config" style="width: 1200px;">
+                <div class="swiper-wrapper">
+                  <div *ngFor="let s of getMyTeamData;" class="swiper-slide">
+                    <div class="mt-box">
+                      <div class="mt-photo"><span><img onError="this.src='./assets/images/avatar.jpg'" src="{{s.image}}"></span></div>
+                      <h6>{{s.name}}</h6>
+                         <ul class="list-inline rating-list" style="display: inline-block !important;">
+                          <li (click)="countStar(star)"
+                              [ngClass]="{'selected': (star <= s.total_rating)}" *ngFor="let star of stars" style="float:left;">
+                            <i class="fa fa-star"></i>
+                          </li> 
+                    </ul>
+                     
+                 
+                    </div>
+                  </div>
+                  
+                </div>
+              </swiper>
+                <div *ngIf="getMyTeamData.length > 0" class="swiper-pagination team-pagination"></div>
+               
+              </div>
+            </div> -->
+</div> </div>
+    <div *ngIf="getMyTeamData.length == 0" class="row">
+          <div  class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mainbox">
+     
+            <div class="boxblock">
+             <i class="fas fa-frown-open"></i>
+             </div>
+              <p class="mt-20 mb-20">{{'myTeam.not-matches' | translate}}<br> {{'myTeam.please-try' | translate}}</p> </div>
+            </div>
+        <!--      <div  *ngIf="getMyTeamData.length == 0" class="alert alert-primary" role="alert">
+   No records found
+</div> -->
+           <!--  <div class="action-btn">
+              <a href="" class="btn btn-primary rounded-pill">Home Cleaning Service</a>
+            </div>
+          </div> -->
+        
+  
+     
+    </div>
+  </div>
+
+
+<style type="text/css">
+  .swiper-pagination {
+
+    position: absolute;
+    text-align: center;
+    transition: .3s opacity;
+    transform: translate3d(0,0,0);
+    z-index: 10;
+    padding-left: 52px;
+    margin: 0 auto;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+
+}
+
+</style>
